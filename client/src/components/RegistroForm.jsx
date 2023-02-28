@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from 'axios';
 import { useNavigate } from "react-router-dom";
+import logo from '../images/sharefy_logo.png';
 
 const RegistroForm = () => {
 
@@ -19,7 +20,7 @@ const RegistroForm = () => {
         }, {withCredentials:true})
         .then((res)=>{
             console.log(res)
-            navigate('/home')
+            navigate('/')
         }).catch((err)=>{
             console.log(err.response)
         })
@@ -27,24 +28,41 @@ const RegistroForm = () => {
     
     return (
         <>
-            <form onSubmit={submitHandler}>
-                <label htmlFor="nombre" className="form-label">Nombre: </label>
-                <input name="nombre" type="text" className="form-control" onChange={e=>{setNombre(e.target.value)}}></input>
-                
-                <label htmlFor="apellido" className="form-label">Apellido: </label>
-                <input name="apellido" type="text" className="form-control" onChange={e=>{setApellido(e.target.value)}}></input>
-                
-                <label htmlFor="email" className="form-label">Email:</label>
-                <input name="email" type="text" className="form-control" onChange={e=>{setEmail(e.target.value)}}></input>
-                
-                <label htmlFor="pass" className="form-label">Contraseña:</label>
-                <input name="pass" type="password" className="form-control" onChange={e=>{setPassword(e.target.value)}}></input>
-                
-                <label htmlFor="cpass" className="form-label">Confirmar Contraseña:</label>
-                <input name="cpass" type="password" className="form-control" onChange={e=>{setCpass(e.target.value)}}></input>
-                
-                <button className="btn btn-success mt-3">Registrarse</button>
-            </form>
+            <div className="form-control border-dark my-5 px-4 bg-dark">
+                <img className='m-3' src={logo} style={{width:'60px',height:'60px'}} alt="" />
+                <h3 className="text-light">Registro</h3>
+                <form onSubmit={submitHandler}>
+                    <div className="form-floating mt-3">
+                        <input name="nombre" type="text" className="form-control border-success-subtle" placeholder="Nombre..." onChange={e=>{setNombre(e.target.value)}}></input>
+                        <label htmlFor="floatingTextarea2" className="form-label">Nombre:</label>
+                    </div>
+                    
+                    <div className="form-floating mt-3">
+                        <input name="apellido" type="text" className="form-control border-success-subtle" placeholder="Nombre..." onChange={e=>{setApellido(e.target.value)}}></input>
+                        <label htmlFor="floatingTextarea2" className="form-label">Apellido:</label>
+                    </div>
+                    
+                    <div className="form-floating mt-3">
+                        <input name="email" type="text" className="form-control border-success-subtle" placeholder="Nombre..." onChange={e=>{setEmail(e.target.value)}}></input>
+                        <label htmlFor="floatingTextarea2" className="form-label">Email:</label>
+                    </div>
+                    
+                    <div className="form-floating mt-3">
+                        <input name="pass" type="password" className="form-control border-success-subtle" placeholder="Nombre..." onChange={e=>{setPassword(e.target.value)}}></input>
+                        <label htmlFor="floatingTextarea2" className="form-label">Contraseña:</label>
+                    </div>
+                    
+                    <div className="form-floating mt-3">
+                        <input name="cpass" type="password" className="form-control border-success-subtle" placeholder="Nombre..." onChange={e=>{setCpass(e.target.value)}}></input>
+                        <label htmlFor="floatingTextarea2" className="form-label">Confirmar Contraseña:</label>
+                    </div>
+
+                    <div className="row justify-content-between mx-1 my-4 ">
+                        <a className="col-4 btn btn-success " href="/login" >Volver</a>
+                        <button className="col-4 btn btn-success ">Registrarse</button>
+                    </div>
+                </form>
+            </div>
         </>
     );
 }

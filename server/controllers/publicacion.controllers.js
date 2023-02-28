@@ -1,4 +1,5 @@
 const Publicacion = require("../models/Publicacion.model");
+const Usuario = require("../models/user.model")
 
 module.exports.nuevaPublicacion = (req, res) => {
   Publicacion.create(req.body)
@@ -12,8 +13,12 @@ module.exports.todasLasPublicaciones = (req, res) => {
     .catch(err => res.json({ message: "Error, algo salió mal", error: err }));
 };
 
-module.exports.publicacionesPorUsuario = (req, res) => {
-  Publicacion.finfindOned({usuario:req.params.usuario})
+module.exports.publicacionesPorUsuario =async (req, res) => {
+  const usuario = await Usuario.findOne({_id:req.params.idUsuario})
+  if(!usuario){
+    res.status(400).json({error:"Error, algo salió mal"})
+  }
+  Publicacion.find({usuario:{id:usuario.id,nombre:usuario.nombre}})
     .then(publicaciones => res.json({publicaciones}))
     .catch(err => res.json({ message: "Error, algo salió mal", error: err }));
 };
@@ -38,6 +43,6 @@ module.exports.actualizarPublicacionUnlike = (req, res) => {
 
 module.exports.borrarPublicacion = (req, res) => {
   Publicacion.deleteOne({_id:req.params._id})
-    .then(publicacion => console.log({  }))
+    .then(publicacion => console.log('Publicacion eliminada'))
     .catch(err => res.json({ message: "Error, algo salió mal", error: err }));
 };

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from 'axios';
 import { useNavigate } from "react-router-dom";
+import logo from '../images/sharefy_logo.png';
 
 const LoginForm = () => {
 
@@ -18,7 +19,7 @@ const LoginForm = () => {
             window.localStorage.setItem(
                 'loggedUser', JSON.stringify(res.data.user)
             )
-            navigate('/home')
+            navigate('/')
         })
         .catch((err) =>{
             console.log(err)
@@ -26,7 +27,9 @@ const LoginForm = () => {
     }
     
     return (
-        <div className="form-control my-5 w-75  text-center">
+        <div className="form-control border-dark my-5 px-4 text-center bg-dark">
+            <img className='m-3' src={logo} style={{width:'60px',height:'60px'}} alt="" />
+            <h3 className="text-light">Log in</h3>
             <form onSubmit={submitHandler}>
                 <div className="form-floating mt-3">
                     <input name="email" type="text" className="form-control border-success-subtle" placeholder="Title..." onChange={e=>{setEmail(e.target.value)}}></input>
@@ -37,8 +40,10 @@ const LoginForm = () => {
                     <input name="pass" type="password" className="form-control border-success-subtle" placeholder="Title..." onChange={e=>{setPassword(e.target.value)}}></input>
                     <label htmlFor="floatingTextarea2" className="form-label">Contraseña:</label>
                 </div>
-                
-                <button className="btn btn-success mt-3">Ingresar</button>
+                <div className="row justify-content-between mx-1 my-3 ">
+                    <a href='/registro' className="col-4 btn btn-success">Registrarse</a>
+                    <button className="col-4 btn btn-success">Loguearse</button>
+                </div>
             </form>
         </div>
     );

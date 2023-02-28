@@ -34,6 +34,11 @@ module.exports = {
         }
     },
 
+    getUsuario : async( req,res ) => {
+        const usuario = await Usuario.findOne({_id:req.params._id})
+        .then(user => res.json({user}))
+        .catch(err => res.json({ message: "Error, algo salió mal", error: err }));
+    },
     logOutUser:(req,res)=>{
         res.clearCookie('userToken')
         res.json({success:'Usuario salio'})
