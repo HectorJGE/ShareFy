@@ -20,6 +20,7 @@ const PublicacionSchema = new mongoose.Schema({
         }
     },
     likes: [],
+    comentarios:[]
 });
 
 const Publicacion = mongoose.model("Publicacion", PublicacionSchema);

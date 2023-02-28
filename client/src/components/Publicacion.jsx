@@ -15,7 +15,7 @@ function Publicacion(props) {
     }
     
     return (
-        <div className="card my-3">
+        <div className="card my-3 text-start">
             <div className="row card-header">
                 <div className="col">
                     <a className=' link-success text-decoration-none fw-bold' href={`/perfil/${props.uid}`}>
@@ -28,10 +28,14 @@ function Publicacion(props) {
             </div>
             <div className="card-body">
                 <h5 className="card-title">{props.titulo}</h5>
-                <p className="card-text">{props.cancion}</p>
+                <a className=' link-success text-decoration-none fw-bold' href={`/publicacion/${props.idP}`}>
+                    <p className="card-text">{props.cancion}</p>
+                </a>
                 <p className="card-text">{props.cuerpo}</p>
             </div>
-            <div className="card-footer text-muted"> <BotonLike stlye={{}} idP={props.idP} cant={props.likes.length}/>
+            
+            <div className="card-footer text-muted">
+                <BotonLike stlye={{}} idP={props.idP} cant={props.likes.length}/>
             </div>
         </div>
     );

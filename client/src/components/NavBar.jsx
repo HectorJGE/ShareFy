@@ -28,9 +28,6 @@ function NavBar() {
                             <img src={logo} style={{width:'30px',height:'30px'}} alt="" /> <span className="text-bg-dark"> ShareFy</span>
                         </a>
                     </div>
-                    <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                        <span className="navbar-toggler-icon"></span>
-                    </button>
                     <div>
                         {
                             currentURL.includes('/perfil/')?

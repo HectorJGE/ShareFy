@@ -10,7 +10,7 @@ function PerfilUsuario(props) {
     
     const [user,setUser] = useState({})
     const [publicaciones,setPublicaciones] = useState()
-
+    
     useEffect(()=>{
 
         axios.get(`http://localhost:8000/api/ppu/${id}`,{withCredentials:true})
@@ -24,7 +24,6 @@ function PerfilUsuario(props) {
         })
         .catch((e)=>console.log(e))
     },[]) 
-
     return (
         <>
             <NavBar></NavBar>

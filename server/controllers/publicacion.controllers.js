@@ -29,13 +29,25 @@ module.exports.PublicacionPorId = (req, res) => {
     .catch(err => res.json({ message: "Error, algo salió mal", error: err }));
 };
 
+module.exports.actualizarPublicacionComentario = (req, res) => {
+  Publicacion.findOneAndUpdate({_id:req.params._id}, {$push:{comentarios:req.body}} , {new:true})
+    .then(publicacion => console.log({publicacion}))
+    .catch(err => res.json({ message: "Error, algo salió mal", error: err }));
+};
+
+module.exports.borrarComentario = (req, res) => {
+  Publicacion.findOneAndUpdate({_id:req.params._id}, {$pull:{comentarios:req.body}} , {new:true})
+  .then(publicacion => console.log({publicacion}))
+  .catch(err => res.json({ message: "Error, algo salió mal", error: err }));
+};
+
 module.exports.actualizarPublicacionLike = (req, res) => {
   Publicacion.findOneAndUpdate({_id:req.params._id}, {$push:{likes:req.body}}, {new:true})
     .then(publicacion => console.log({publicacion}))
     .catch(err => res.json({ message: "Error, algo salió mal", error: err }));
 };
 
-module.exports.actualizarPublicacionUnlike = (req, res) => {
+module.exports.deletelike = (req, res) => {
   Publicacion.findOneAndUpdate({_id:req.params._id}, {$pull:{likes:req.body}}, {new:true})
     .then(publicacion => console.log({publicacion}))
     .catch(err => res.json({ message: "Error, algo salió mal", error: err }));

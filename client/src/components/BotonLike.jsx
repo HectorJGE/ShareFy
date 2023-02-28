@@ -45,7 +45,7 @@ function BotonLike(props) {
     const disLike = (e) => {
         setClike(clike-1)
         setLiked(false)
-        ApiCall('updateUnLike')
+        ApiCall('deleteLike')
     }
     
 

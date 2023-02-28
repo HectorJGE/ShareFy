@@ -3,8 +3,9 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 import Home from "./views/Home";
 import Login from './views/Login';
-import PerfilUsuario from "./views/PerfilUsuario";
 import Registro from './views/Registro';
+import PublicacionView from "./views/PublicacionView";
+import PerfilUsuario from "./views/PerfilUsuario";
 
 function App() {
   
@@ -19,8 +20,10 @@ function App() {
           <Route exact path="/registro" element={<Registro/>}/>
           <Route exact path="/login" element={<Login/>}/>
           <Route exact path="/perfil/:id" element={<PerfilUsuario/>}/>
+          <Route exact path="/publicacion/:id" element={<PublicacionView/>}/>
         </Routes>
       </BrowserRouter>
+
     </>
   );
 }
