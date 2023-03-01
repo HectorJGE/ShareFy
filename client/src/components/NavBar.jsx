@@ -16,7 +16,7 @@ function NavBar() {
             
         })
         .catch(e=>console.log(e))
-        window.location.reload(false);
+        window.location.reload(false);  
         
     }
     return (

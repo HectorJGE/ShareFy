@@ -23,6 +23,7 @@ const RegistroForm = () => {
             console.log(res)
             navigate('/')
         }).catch((err)=>{
+            console.log(err)
             setErrors(err.response.data.errors)
         })
     }
@@ -37,33 +38,53 @@ const RegistroForm = () => {
                         <input name="nombre" type="text" className={`form-control border-success-subtle ${errors?errors['nombre']?'is-invalid':null:null}`} placeholder="Nombre..." onChange={e=>{setNombre(e.target.value)}}></input>
                         <label htmlFor="floatingTextarea2" className="form-label">Nombre:</label>
                         {errors?errors['nombre']?
-                            <div id="validationServer03Feedback" class="invalid-feedback">
-                                Introduzca nombre
+                            <div id="validationServer03Feedback" className="invalid-feedback">
+                                {errors['nombre']['message']}
                             </div>
                         :null:null}
                     </div>
                     <div className="form-floating mt-3">
-                        <input name="apellido" type="text" className="form-control border-success-subtle" placeholder="Nombre..." onChange={e=>{setApellido(e.target.value)}}></input>
+                        <input name="apellido" type="text" className={`form-control border-success-subtle ${errors?errors['apellido']?'is-invalid':null:null}`} placeholder="Nombre..." onChange={e=>{setApellido(e.target.value)}}></input>
                         <label htmlFor="floatingTextarea2" className="form-label">Apellido:</label>
+                        {errors?errors['apellido']?
+                            <div id="validationServer03Feedback" className="invalid-feedback">
+                                {errors['apellido']['message']}
+                            </div>
+                        :null:null}
                     </div>
                     
                     <div className="form-floating mt-3">
-                        <input name="email" type="text" className="form-control border-success-subtle" placeholder="Nombre..." onChange={e=>{setEmail(e.target.value)}}></input>
+                        <input name="email" type="text" className={`form-control border-success-subtle ${errors?errors['email']?'is-invalid':null:null}`} onChange={e=>{setEmail(e.target.value)}}></input>
                         <label htmlFor="floatingTextarea2" className="form-label">Email:</label>
+                        {errors?errors['email']?
+                            <div id="validationServer03Feedback" className="invalid-feedback">
+                                {errors['email']['message']}
+                            </div>
+                        :null:null}
                     </div>
                     
                     <div className="form-floating mt-3">
-                        <input name="pass" type="password" className="form-control border-success-subtle" placeholder="Nombre..." onChange={e=>{setPassword(e.target.value)}}></input>
+                        <input name="pass" type="password" className={`form-control border-success-subtle ${errors?errors['password']?'is-invalid':null:null}`} onChange={e=>{setPassword(e.target.value)}}></input>
                         <label htmlFor="floatingTextarea2" className="form-label">Contraseña:</label>
+                        {errors?errors['password']?
+                            <div id="validationServer03Feedback" className="invalid-feedback">
+                                {errors['password']['message']}
+                            </div>
+                        :null:null}
                     </div>
                     
                     <div className="form-floating mt-3">
-                        <input name="cpass" type="password" className="form-control border-success-subtle" placeholder="Nombre..." onChange={e=>{setCpass(e.target.value)}}></input>
+                        <input name="cpass" type="password" className={`form-control border-success-subtle ${errors?errors['cpass']?'is-invalid':null:null}`} onChange={e=>{setCpass(e.target.value)}}></input>
                         <label htmlFor="floatingTextarea2" className="form-label">Confirmar Contraseña:</label>
+                        {errors?errors['cpass']?
+                            <div id="validationServer03Feedback" className="invalid-feedback">
+                                {errors['cpass']['message']}
+                            </div>
+                        :null:null}
                     </div>
 
                     <div className="row justify-content-between mx-1 my-4 ">
-                        <a className="col-4 btn btn-success " href="/login" >Volver</a>
+                        <a className="col-4 btn btn-success " href={`/login`} >Volver</a>
                         <button className="col-4 btn btn-success ">Registrarse</button>
                     </div>
                 </form>

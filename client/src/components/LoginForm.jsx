@@ -3,12 +3,11 @@ import axios from 'axios';
 import logo from '../images/sharefy_logo.png';
 
 const LoginForm = () => {
-
     const [email,setEmail] = useState()
     const [password,setPassword] = useState('')
     const [error,setError] = useState()
-
-
+    
+    
     const submitHandler = (e) => {
         e.preventDefault()
         axios.post('http://localhost:8000/api/login',{
@@ -32,7 +31,7 @@ const LoginForm = () => {
             <form onSubmit={submitHandler}>
                 {error?<div className="text-danger">{error}</div>:null}
                 <div className="form-floating mt-3">
-                    <input name="email" type="text" className="form-control border-success-subtle" placeholder="Title..." onChange={e=>{setEmail(e.target.value)}}></input>
+                    <input value={email} name="email" type="text" className="form-control border-success-subtle" placeholder="Title..." onChange={e=>{setEmail(e.target.value)}}></input>
                     <label htmlFor="floatingTextarea2" className="form-label">Email:</label>
                 </div>
                 

@@ -14,6 +14,7 @@ const UserSchema = new mongoose.Schema({
     email: {
         type: String,
         required: [true, "Email es requerido"],
+        unique: true,
         validate: {
             validator: val => /^([\w-\.]+@([\w-]+\.)+[\w-]+)?$/.test(val),
             message: "Please enter a valid email"
@@ -38,7 +39,10 @@ UserSchema.pre('save', async function(next) {
 
 UserSchema.pre('validate', function(next) {
     if (this.password !== this.confirmPassword) {
-        this.invalidate('cpass', 'Password must match confirm password');
+        this.invalidate('cpass', 'Las contraseñas no coinciden');
+    }
+    if (this.confirmPassword == '') {
+        this.invalidate('cpass', 'Confirm Password es requerido');
     }
     next();
 });

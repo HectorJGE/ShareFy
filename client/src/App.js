@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, Route, Routes, Navigate } from 'react-router-dom';
 
 import Home from "./views/Home";
 import Login from './views/Login';
@@ -14,12 +14,12 @@ function App() {
     <>
       <BrowserRouter>
         <Routes>
-          <Route exact path="/" element={user?<Home/>:<Login/>}/>
-          <Route exact path="/perfil/:id" element={user?<PerfilUsuario/>:<Login/>}/>
-          <Route exact path="/publicacion/:id" element={user?<PublicacionView/>:<Login/>}/>
-          <Route exact path="/login" element={user?<Home/>:<Login/>}/>
-          <Route exact path="/registro" element={user?<Home/>:<Registro/>}/>
-          <Route exact path="*" element={user?<Home/>:<Login/>}/>
+          <Route exact path="/" element={user?<Home/>:<Navigate to="/login"/>}/>
+          <Route exact path="/perfil/:id" element={user?<PerfilUsuario/>:<Navigate to="/login"/>}/>
+          <Route exact path="/publicacion/:id" element={user?<PublicacionView/>:<Navigate to="/login"/>}/>
+          <Route exact path="/login" element={user?<Navigate to="/"/>:<Login/>}/>
+          <Route exact path="/registro" element={user?<Navigate to="/login"/>:<Registro/>}/>
+          <Route exact path="*" element={user?<Navigate to="/login"/>:<Login/>}/>
         </Routes>
       </BrowserRouter>
       
