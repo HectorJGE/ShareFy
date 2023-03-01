@@ -5,7 +5,7 @@ import { useParams } from "react-router-dom";
 
 import Publicacion from "../components/Publicacion.jsx";
 
-function PerfilUsuario(props) {
+function PerfilUsuario() {
     const {id} = useParams()
     
     const [user,setUser] = useState({})
@@ -23,7 +23,7 @@ function PerfilUsuario(props) {
             setUser(res.data.user)
         })
         .catch((e)=>console.log(e))
-    },[]) 
+    },[id]) 
     return (
         <>
             <NavBar></NavBar>

@@ -1,14 +1,13 @@
 import React, { useState } from "react";
 import axios from 'axios';
-import { useNavigate } from "react-router-dom";
 import logo from '../images/sharefy_logo.png';
 
 const LoginForm = () => {
 
     const [email,setEmail] = useState()
     const [password,setPassword] = useState('')
+    const [error,setError] = useState()
 
-    const navigate = useNavigate()
 
     const submitHandler = (e) => {
         e.preventDefault()
@@ -19,10 +18,10 @@ const LoginForm = () => {
             window.localStorage.setItem(
                 'loggedUser', JSON.stringify(res.data.user)
             )
-            navigate('/')
+            window.location.reload(false);
         })
         .catch((err) =>{
-            console.log(err)
+            setError(err.response.data.error)
         })
     }
     
@@ -31,6 +30,7 @@ const LoginForm = () => {
             <img className='m-3' src={logo} style={{width:'60px',height:'60px'}} alt="" />
             <h3 className="text-light">Log in</h3>
             <form onSubmit={submitHandler}>
+                {error?<div className="text-danger">{error}</div>:null}
                 <div className="form-floating mt-3">
                     <input name="email" type="text" className="form-control border-success-subtle" placeholder="Title..." onChange={e=>{setEmail(e.target.value)}}></input>
                     <label htmlFor="floatingTextarea2" className="form-label">Email:</label>

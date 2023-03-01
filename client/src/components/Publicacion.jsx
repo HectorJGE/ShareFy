@@ -6,6 +6,7 @@ import axios from "axios";
 function Publicacion(props) {
 
     const idUser = JSON.parse(window.localStorage.getItem('loggedUser'))._id
+    const currentURL = window.location.pathname
 
     const borrarPubli = () => {
         axios.delete(`http://localhost:8000/api/borrar/${props.idP}`,{withCredentials:true})
@@ -23,7 +24,7 @@ function Publicacion(props) {
                     </a>
                 </div>
                 <div className="col text-end">
-                    {props.uid == idUser?<AiOutlineDelete onClick={borrarPubli}/>:null}
+                    {props.uid === idUser?<AiOutlineDelete onClick={borrarPubli}/>:null}
                 </div>
             </div>
             <div className="card-body">
@@ -34,8 +35,12 @@ function Publicacion(props) {
                 <p className="card-text">{props.cuerpo}</p>
             </div>
             
-            <div className="card-footer text-muted">
-                <BotonLike stlye={{}} idP={props.idP} cant={props.likes.length}/>
+            <div className="row justify-content-between card-footer text-muted">
+                <BotonLike className=" border" stlye={{}} idP={props.idP} cant={props.likes.length}/>
+                {
+                    currentURL.includes('/publicacion')?null:<a className='col text-end text-decoration-none text-success' href={`/publicacion/${props.idP}`}>Ver Publicación</a>
+                }
+                
             </div>
         </div>
     );

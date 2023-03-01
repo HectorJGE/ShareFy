@@ -6,6 +6,7 @@ import PublicacionForm from '../components/PublicacionForm'
 import Publicacion from "../components/Publicacion.jsx";
 
 function Home() {
+    
     const [publicaciones,setPublicaciones] = useState()
 
     useEffect(()=>{

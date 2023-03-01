@@ -1,4 +1,3 @@
-import React, { useState } from "react";
 import {AiOutlineDelete} from "react-icons/ai";
 import axios from "axios";
 const Comentario = (props) => {
@@ -19,14 +18,14 @@ const Comentario = (props) => {
     
     return (
         <>  
-            <div className="row card-header border text-start">
-                
-                <div className="row">
-                    <a className='col link-success text-decoration-none fw-bold' href={`/perfil/${props.uid}`}>
+            <hr></hr>
+            <div className="text-start">
+                <div className="row justify-content-between">
+                    <a className='col  link-success text-decoration-none fw-bold' href={`/perfil/${props.uid}`}>
                         {props.uName}:
                     </a> 
-                    <div className="col text-end">
-                        {props.uid == idUser?<AiOutlineDelete onClick={borrarPubli}/>:null}
+                    <div className="col  text-end">
+                        {props.uid === idUser?<AiOutlineDelete onClick={borrarPubli}/>:null}
                     </div>
                 </div>
                 <p>{props.comentario}</p>

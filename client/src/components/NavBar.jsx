@@ -1,11 +1,9 @@
 import React from "react";
 import axios from 'axios'
-import { useNavigate } from "react-router-dom";
 import logo from '../images/sharefy_logo.png';
 
 function NavBar() {
     
-    const navigate = useNavigate();
     
     const idUser = JSON.parse(window.localStorage.getItem('loggedUser'))._id
     const currentURL = window.location.pathname
@@ -15,9 +13,11 @@ function NavBar() {
         .then(res=>{
             console.log(res.data);
             window.localStorage.removeItem('loggedUser')
+            
         })
         .catch(e=>console.log(e))
-        navigate('/login')
+        window.location.reload(false);
+        
     }
     return (
         <>
