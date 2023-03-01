@@ -25,7 +25,7 @@ const Comentario = (props) => {
                         {props.uName}:
                     </a> 
                     <div className="col  text-end">
-                        {props.uid === idUser?<AiOutlineDelete onClick={borrarPubli}/>:null}
+                        {props.uid === idUser?<a className="text-success" href="#"><AiOutlineDelete onClick={borrarPubli}/></a>:null}
                     </div>
                 </div>
                 <p>{props.comentario}</p>

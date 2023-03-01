@@ -1,27 +1,30 @@
 import React,{useEffect,useState} from "react";
 import NavBar from "../components/NavBar.jsx";
 import axios from "axios";
-import { useParams } from "react-router-dom";
+import { useParams,useNavigate } from "react-router-dom";
 
 import Publicacion from "../components/Publicacion.jsx";
-import ComentariosForm from "../components/ComentariosForm.jsx";
-import Comentario from "../components/Comentario.jsx";
 
-function PublicacionView(props) {
+function ConfirmacionBorrar(props) {
     const {id} = useParams()
     
     const [publicacion,setPublicacion] = useState()
-
+    const navigate = useNavigate()
     useEffect(()=>{
         axios.get(`http://localhost:8000/api/publicacion/${id}`,{withCredentials:true})
         .then((res)=>{
-            console.log(res.data)
             setPublicacion(res.data)
         })
         .catch((e)=>console.log(e))
         
     },[]) 
 
+    const borrarPubli = () => {
+        axios.delete(`http://localhost:8000/api/borrar/${id}`,{withCredentials:true})
+        .then(res=>console.log(res))
+        .catch(error=>console.log(error))
+        navigate('/')
+    }
     return (
         <>
             <NavBar></NavBar>
@@ -30,14 +33,17 @@ function PublicacionView(props) {
                     {publicacion?
                         <>
                             <Publicacion uid={publicacion.usuario.id} cancion={publicacion.cancion} idP={publicacion._id} unombre={publicacion.usuario.nombre} titulo={publicacion.titulo} cuerpo={publicacion.cuerpo} likes={publicacion.likes}/>
-                            <div data-bs-spy="scroll" className="card form-control ">
-                                <ComentariosForm idP={publicacion._id}/>
-                                {publicacion.comentarios.slice(0).reverse().map((comentario, i)=>{
-                                        return <Comentario key={i} idP={publicacion._id} uid={comentario.idUsuario} uName={comentario.usuario} comentario={comentario.comentario}/>
-                                })}
+                            
+                            <div className="card my-3 text-start">
+                                <h5 className="card-header text-success">¿Está seguro que desea eliminar esta publiación?</h5>
+                            <div className="row justify-content-evenly mx-1 my-4 ">
+                                <button onClick={()=>{navigate(-1)}} className="col-4 btn btn-secondary " >Cancelar</button>
+                                <button onClick={borrarPubli} className="col-4 btn btn-success ">Eliminar</button>
+                            </div>
                                 
                             </div>
                         </>:null
+                        
                     } 
                 </div>
             </center>
@@ -45,4 +51,4 @@ function PublicacionView(props) {
     );
 }
 
-export default PublicacionView;
+export default ConfirmacionBorrar;

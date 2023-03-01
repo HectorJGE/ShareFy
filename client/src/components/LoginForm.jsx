@@ -31,7 +31,7 @@ const LoginForm = () => {
             <form onSubmit={submitHandler}>
                 {error?<div className="text-danger">{error}</div>:null}
                 <div className="form-floating mt-3">
-                    <input value={email} name="email" type="text" className="form-control border-success-subtle" placeholder="Title..." onChange={e=>{setEmail(e.target.value)}}></input>
+                    <input name="email" type="text" className="form-control border-success-subtle" placeholder="Title..." onChange={e=>{setEmail(e.target.value)}}></input>
                     <label htmlFor="floatingTextarea2" className="form-label">Email:</label>
                 </div>
                 
