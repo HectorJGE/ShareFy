@@ -1,7 +1,8 @@
 import React from "react";
 import BotonLike from "./BotonLike";
 import {AiOutlineDelete} from "react-icons/ai";
-import axios from "axios";
+import {BsPencil} from "react-icons/bs"
+import SearchResultado from "./SearchResultado";
 
 function Publicacion(props) {
 
@@ -17,17 +18,22 @@ function Publicacion(props) {
                     </a>
                 </div>
                 <div className="col text-end">
-                    {props.uid === idUser?
-                    <a className="text-success" href={`/borrar/publicacion/${props.idP}`}>
-                        {currentURL.includes('borrar')?null:<AiOutlineDelete/>}
-                    </a>
+                    
+                {props.uid === idUser?
+                    <>
+                        <a className="text-success" href={`/editar/publicacion/${props.idP}`}>
+                            {currentURL.includes('editar')?null:<BsPencil/>}
+                        </a>
+                        <a className="text-success ms-2" href={`/borrar/publicacion/${props.idP}`}>
+                            {currentURL.includes('borrar')?null:<AiOutlineDelete/>}
+                        </a>
+                    </>
                     :null}
                 </div>
             </div>
             <div className="card-body">
-                <h5 className="card-title">{props.titulo}</h5>
                 <a className=' link-success text-decoration-none fw-bold' href={`/publicacion/${props.idP}`}>
-                    <p className="card-text">{props.cancion}</p>
+                    <SearchResultado title={props.cancion.titulo} img={props.cancion.imgUrl} artist={props.cancion.artist}></SearchResultado>
                 </a>
                 <p className="card-text">{props.cuerpo}</p>
             </div>

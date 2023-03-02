@@ -35,6 +35,12 @@ module.exports.actualizarPublicacionComentario = (req, res) => {
     .catch(err => res.json({ message: "Error, algo salió mal", error: err }));
 };
 
+module.exports.editarPublicacion = (req, res) => {
+  Publicacion.findOneAndUpdate({_id:req.params._id}, req.body, {new:true})
+    .then(publicacion => console.log({publicacion}))
+    .catch(err => res.json({ message: "Error, algo salió mal", error: err }));
+};
+
 module.exports.borrarComentario = (req, res) => {
   Publicacion.findOneAndUpdate({_id:req.params._id}, {$pull:{comentarios:req.body}} , {new:true})
   .then(publicacion => console.log({publicacion}))

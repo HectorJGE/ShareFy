@@ -1,12 +1,16 @@
 const mongoose = require("mongoose");
 
 const PublicacionSchema = new mongoose.Schema({
-	titulo: {
-        type: String
-    },
     cancion: {
-        type: String,
-        required: [true, "Cancion es requerida"]
+        titulo:{
+            type: String
+        },
+        imgUrl:{
+            type: String
+        },
+        artist:{
+            type: String
+        }
     },
     cuerpo: {
         type: String

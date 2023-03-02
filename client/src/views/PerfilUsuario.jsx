@@ -13,10 +13,10 @@ function PerfilUsuario() {
     
     useEffect(()=>{
 
-        axios.get(`http://localhost:8000/api/ppu/${id}`,{withCredentials:true})
+        axios.get(`http://localhost:8000/api/publiacion/usuario/${id}`,{withCredentials:true})
         .then((res)=>{setPublicaciones(res.data.publicaciones)})
         .catch((e)=>console.log(e))
-
+        
         axios.get(`http://localhost:8000/api/user/${id}`
         ,{withCredentials:true})
         .then((res)=>{

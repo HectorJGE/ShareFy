@@ -11,7 +11,7 @@ function BotonLike(props) {
     const idUser = JSON.parse(window.localStorage.getItem('loggedUser'))._id
     
     useEffect(()=>{
-        axios.get(`http://localhost:8000/api/Publicacion/${props.idP}`,{withCredentials:true})
+        axios.get(`http://localhost:8000/api/publicacion/${props.idP}`,{withCredentials:true})
         .then((res)=>{
 
             if(res.data.likes.find(e => e.idUser === idUser)){
@@ -24,7 +24,7 @@ function BotonLike(props) {
     },[idUser,props.idP]) 
 
     const ApiCall = (param) => {
-        axios.put(`http://localhost:8000/api/${param}/${props.idP}`,{
+        axios.put(`http://localhost:8000/api/publicacion/${param}/${props.idP}`,{
             idUser
         },{withCredentials:true})
         .then((res)=>{
@@ -39,13 +39,13 @@ function BotonLike(props) {
         setClike(clike+1)
         
         setLiked(true)
-        ApiCall('updateLike')
+        ApiCall('like')
     }
 
     const disLike = () => {
         setClike(clike-1)
         setLiked(false)
-        ApiCall('deleteLike')
+        ApiCall('unlike')
     }
     
 

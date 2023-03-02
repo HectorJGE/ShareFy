@@ -20,7 +20,7 @@ function PublicacionView(props) {
         })
         .catch((e)=>console.log(e))
         
-    },[]) 
+    },[id]) 
 
     return (
         <>
@@ -30,6 +30,7 @@ function PublicacionView(props) {
                     {publicacion?
                         <>
                             <Publicacion uid={publicacion.usuario.id} cancion={publicacion.cancion} idP={publicacion._id} unombre={publicacion.usuario.nombre} titulo={publicacion.titulo} cuerpo={publicacion.cuerpo} likes={publicacion.likes}/>
+                            
                             <div data-bs-spy="scroll" className="card form-control ">
                                 <ComentariosForm idP={publicacion._id}/>
                                 {publicacion.comentarios.slice(0).reverse().map((comentario, i)=>{

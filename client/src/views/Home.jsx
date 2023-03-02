@@ -10,7 +10,7 @@ function Home() {
     const [publicaciones,setPublicaciones] = useState()
 
     useEffect(()=>{
-        axios.get("http://localhost:8000/api/todasLasPublicaciones",{withCredentials:true})
+        axios.get("http://localhost:8000/api/publicacion/all",{withCredentials:true})
         .then((res)=>{setPublicaciones(res.data.publicaciones)})
         .catch((e)=>console.log(e))
     },[]) 
@@ -24,7 +24,7 @@ function Home() {
                 </div>
                 <div className="Container w-25 text-start">
                 {publicaciones ? publicaciones.slice(0).reverse().map((index, key)=>{
-                    return <Publicacion key={key} uid={index.usuario.id} cancion={index.cancion} idP={index._id} unombre={index.usuario.nombre} titulo={index.titulo} cuerpo={index.cuerpo} likes={index.likes}/>
+                    return <Publicacion key={key} uid={index.usuario.id} cancion={index.cancion} idP={index._id} unombre={index.usuario.nombre} cuerpo={index.cuerpo} likes={index.likes}/>
                 }): null}
                     
                 </div>

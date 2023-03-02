@@ -9,7 +9,7 @@ const ComentariosForm = (props) => {
     const submitHandler = () => {
         const user = JSON.parse(window.localStorage.getItem('loggedUser'));
 
-        axios.put(`http://localhost:8000/api/updatePublicacionComentario/${props.idP}`,{
+        axios.put(`http://localhost:8000/api/publicacion/agregar/comentario/${props.idP}`,{
             'idUsuario':user._id, 
             'usuario':user.nombre, 
             'comentario':comentario

@@ -17,10 +17,10 @@ function ConfirmacionBorrar(props) {
         })
         .catch((e)=>console.log(e))
         
-    },[]) 
+    },[id]) 
 
     const borrarPubli = () => {
-        axios.delete(`http://localhost:8000/api/borrar/${id}`,{withCredentials:true})
+        axios.delete(`http://localhost:8000/api/publicacion/borrar/${id}`,{withCredentials:true})
         .then(res=>console.log(res))
         .catch(error=>console.log(error))
         navigate('/')

@@ -5,7 +5,7 @@ const Comentario = (props) => {
     const idUser = JSON.parse(window.localStorage.getItem('loggedUser'))._id
 
     const borrarPubli = () => {
-        axios.put(`http://localhost:8000/api/deleteComentario/${props.idP}`,{
+        axios.put(`http://localhost:8000/api/publicacion/borrar/comentario/${props.idP}`,{
             'idUsuario':props.uid, 
             'usuario':props.uName, 
             'comentario':props.comentario
@@ -25,7 +25,7 @@ const Comentario = (props) => {
                         {props.uName}:
                     </a> 
                     <div className="col  text-end">
-                        {props.uid === idUser?<a className="text-success" href="#"><AiOutlineDelete onClick={borrarPubli}/></a>:null}
+                        {props.uid === idUser?<a className="text-success" href=""><AiOutlineDelete onClick={borrarPubli}/></a>:null}
                     </div>
                 </div>
                 <p>{props.comentario}</p>
