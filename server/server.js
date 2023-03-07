@@ -24,6 +24,7 @@ app.use(cors({
 // Rutas
 app.use('/api', require('./routes/user.routes'));
 app.use('/api', require('./routes/publicacion.routes'));
+app.use('/api', require('./routes/message.routes'));
 
 // Creamos un servidor http 
 const server = http.createServer(app);
