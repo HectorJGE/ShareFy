@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 const bcrypt = require('bcrypt')
 
 const UserSchema = new mongoose.Schema({
-    
+
     nombre: {
         type: String,
         required: [true, "Nombre es requerido"]
@@ -25,19 +25,19 @@ const UserSchema = new mongoose.Schema({
         required: [true, "Password es requerido"],
         minlength: [8, "Password debe tener 8 o más caractéres"]
     }
-}, {timestamps: true});
+}, { timestamps: true });
 
-UserSchema.pre('save', async function(next) {
-    try{
+UserSchema.pre('save', async function (next) {
+    try {
         const hashedPassword = await bcrypt.hash(this.password, 10)
         this.password = hashedPassword
         next()
-    }catch{
+    } catch {
         console.log('Error al guardar usuario', error)
     }
 });
 
-UserSchema.pre('validate', function(next) {
+UserSchema.pre('validate', function (next) {
     if (this.password !== this.confirmPassword) {
         this.invalidate('cpass', 'Las contraseñas no coinciden');
     }
@@ -48,8 +48,8 @@ UserSchema.pre('validate', function(next) {
 });
 
 UserSchema.virtual('confirmPassword')
-    .get( () => this.confirmPassword )
-    .set( value => this.confirmPassword = value );
+    .get(() => this.confirmPassword)
+    .set(value => this.confirmPassword = value);
 
 module.exports = mongoose.model('usuario', UserSchema)
 

@@ -1,8 +1,10 @@
-const ControladorUsuarios = require("../controllers/user.controllers");
+const express = require("express");
+const router = express.Router();
+const ControladorUsuarios = require("./../controllers/user.controllers");
 
-module.exports = app => {
-    app.post( "/api/registrar" ,ControladorUsuarios.registroUsuario );
-    app.post( "/api/login" , ControladorUsuarios.loginUsuario );
-    app.get( "/api/user/:_id" , ControladorUsuarios.getUsuario );
-    app.get('/api/logout', ControladorUsuarios.logOutUser);
-};
+router.post("/registrar", ControladorUsuarios.registroUsuario);
+router.post("/login", ControladorUsuarios.loginUsuario);
+router.get("/user/:_id", ControladorUsuarios.getUsuario);
+router.get('/logout', ControladorUsuarios.logOutUser);
+
+module.exports = router;

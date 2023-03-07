@@ -2,29 +2,29 @@ const mongoose = require("mongoose");
 
 const PublicacionSchema = new mongoose.Schema({
     cancion: {
-        titulo:{
+        titulo: {
             type: String
         },
-        imgUrl:{
+        imgUrl: {
             type: String
         },
-        artist:{
+        artist: {
             type: String
         }
     },
     cuerpo: {
         type: String
     },
-    usuario:{
-        id:{
+    usuario: {
+        id: {
             type: String
         },
-        nombre:{
+        nombre: {
             type: String
         }
     },
     likes: [],
-    comentarios:[]
+    comentarios: []
 });
 
 const Publicacion = mongoose.model("Publicacion", PublicacionSchema);
