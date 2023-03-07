@@ -1,9 +1,11 @@
 const express = require('express');
-const app = express();
+const socketio = require('socket.io');
+const http = require('http');
 const cors = require('cors');
 const cookieParser = require('cookie-parser')
-const port = process.env.PORT || 8000;
 require('dotenv').config()
+const app = express();
+const port = process.env.PORT || 8000;
 
 // Database
 require('./config/mongoose.config');
@@ -11,7 +13,6 @@ require('./config/mongoose.config');
 //  Middlewares
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-// Middlewares cookies
 app.use(cookieParser())
 
 // CORS
@@ -24,6 +25,20 @@ app.use(cors({
 app.use('/api', require('./routes/user.routes'));
 app.use('/api', require('./routes/publicacion.routes'));
 
-app.listen(port , () => {
+// Creamos un servidor http 
+const server = http.createServer(app);
+
+// Inicializamos socket.io
+const io = socketio(server, {
+    cors: {
+        origin: process.env.CORS_ORIGIN,
+        credentials: true
+    }
+});
+
+require('./sockets/socket')(io);
+
+
+server.listen(port , () => {
     console.log(`Server running on port ${port}`)
 })
