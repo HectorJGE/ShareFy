@@ -24,7 +24,7 @@ const getMessages = (req, res, next) => {
             res.json(projectedMessages);
         })
         .catch((err) => {
-            next(err);
+            res.status(401).json(err);
         });
 };
 
@@ -48,7 +48,7 @@ const createMessage = (req, res, next) => {
             } 
         })
         .catch((err) => {
-            next(err);
+            res.status(401).json(err);
         });
 };
 

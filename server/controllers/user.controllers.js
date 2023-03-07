@@ -4,6 +4,24 @@ const bcrypt = require('bcrypt')
 const key = process.env.SECRET_KEY
 
 module.exports = {
+    getAllUsers: async (req, res, next) => {
+        try {
+            // Buscamos todos los usuarios que no sean el usuario que está haciendo la petición 
+            const users = await User.find({ _id: { $ne: req.params.id } }).select([
+                "nombre",
+                "apellido",
+                "email",
+                "profilePicture",
+                "_id"
+            ]);
+            // Devolvemos los usuarios con cada campo especificado en el select
+            return res.json(users);
+        } catch(error) {
+            res.status(401).json(error)
+        }
+    },
+
+
     registroUsuario: async (req, res) => {
         user = await Usuario.findOne({ email: req.body.email })
         if (user) {
@@ -45,7 +63,7 @@ module.exports = {
             .then(user => res.json({ user }))
             .catch(err => res.json({ message: "Error, algo salió mal", error: err }));
     },
-    
+
     logOutUser: (req, res) => {
         res.clearCookie('userToken')
         res.json({ success: 'Usuario salio' })
