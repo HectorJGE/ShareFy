@@ -6,7 +6,7 @@ const { authenticate } = require('./../config/jwt.config')
 //Publicacion
 router.post("/publicacion/nuevo", authenticate, ControladorPublicaciones.nuevaPublicacion);
 router.get("/publicacion/all", authenticate, ControladorPublicaciones.todasLasPublicaciones);
-router.get("/publiacion/usuario/:idUsuario", authenticate, ControladorPublicaciones.publicacionesPorUsuario);
+router.get("/publicacion/usuario/:idUsuario", authenticate, ControladorPublicaciones.publicacionesPorUsuario);
 router.get("/publicacion/:_id", authenticate, ControladorPublicaciones.PublicacionPorId);
 router.put("/editar/publicacion/:_id", authenticate, ControladorPublicaciones.editarPublicacion);
 router.delete("/publicacion/borrar/:_id", authenticate, ControladorPublicaciones.borrarPublicacion);
