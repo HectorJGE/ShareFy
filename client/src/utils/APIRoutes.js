@@ -11,7 +11,7 @@ const agregarComentarioRoute = `${host}/api/publicacion/agregar/comentario`; // 
 const publicacionUserRoute = `${host}/api/publicacion/usuario`; // Se le pasa adicionalmente "/:id"
 
 // Para conexiones del usuario
-const allUsersRoute = `${host}/api/auth/allusers`;  // Se le tiene que pasar adicionalmente "/:id"
+const allUsersRoute = `${host}/api/allUsers`;  // Se le tiene que pasar adicionalmente "/:id"
 const loginRoute = `${host}/api/login`;
 const logoutRoute = `${host}/api/logout`;
 const registerRoute = `${host}/api/registrar`;
