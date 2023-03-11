@@ -1,29 +1,28 @@
-import React,{useEffect,useState} from "react";
+import React, { useEffect, useState } from "react";
 import NavBar from "../components/NavBar.jsx";
 import axios from "axios";
 import { useParams } from "react-router-dom";
-
 import Publicacion from "../components/Publicacion.jsx";
+import { getUserRoute, publicacionUserRoute } from "../utils/APIRoutes.js";
 
 function PerfilUsuario() {
-    const {id} = useParams()
-    
-    const [user,setUser] = useState({})
-    const [publicaciones,setPublicaciones] = useState()
-    
-    useEffect(()=>{
+    const { id } = useParams()
+    const [user, setUser] = useState({})
+    const [publicaciones, setPublicaciones] = useState()
 
-        axios.get(`http://localhost:8000/api/publiacion/usuario/${id}`,{withCredentials:true})
-        .then((res)=>{setPublicaciones(res.data.publicaciones)})
-        .catch((e)=>console.log(e))
-        
-        axios.get(`http://localhost:8000/api/user/${id}`
-        ,{withCredentials:true})
-        .then((res)=>{
-            setUser(res.data.user)
-        })
-        .catch((e)=>console.log(e))
-    },[id]) 
+    useEffect(() => {
+        axios.get(`${publicacionUserRoute}/${id}`, { withCredentials: true })
+            .then((res) => { setPublicaciones(res.data.publicaciones) })
+            .catch((e) => console.log(e))
+
+        axios.get(`${getUserRoute}/${id}`
+            , { withCredentials: true })
+            .then((res) => {
+                setUser(res.data.user)
+            })
+            .catch((e) => console.log(e))
+    }, [id])
+
     return (
         <>
             <NavBar></NavBar>
@@ -37,9 +36,9 @@ function PerfilUsuario() {
                     </div>
                 </div>
                 <div className="Container w-25 text-start">
-                    {publicaciones ? publicaciones.slice(0).reverse().map((index, key)=>{
-                        return <Publicacion key={key} uid={index.usuario.id} cancion={index.cancion} idP={index._id} unombre={index.usuario.nombre} titulo={index.titulo} cuerpo={index.cuerpo} likes={index.likes}/>
-                    }): null}
+                    {publicaciones ? publicaciones.slice(0).reverse().map((index, key) => {
+                        return <Publicacion key={key} uid={index.usuario.id} cancion={index.cancion} idP={index._id} unombre={index.usuario.nombre} titulo={index.titulo} cuerpo={index.cuerpo} likes={index.likes} />
+                    }) : null}
                 </div>
             </center>
         </>
