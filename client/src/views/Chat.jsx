@@ -16,6 +16,7 @@ const Chat = () => {
     const [contacts, setContacts] = useState([]);
     const [currentChat, setCurrentChat] = useState(undefined);
     const [currentUser, setCurrentUser] = useState(undefined);
+    const [usersConnected, setUsersConnected] = useState([]);
 
     const navegar = useNavigate();
     const socket = useRef();
@@ -38,7 +39,9 @@ const Chat = () => {
         if (currentUser) {
             socket.current = io(process.env.REACT_APP_API_BASE_URL);
             socket.current.emit("addUser", currentUser);
+            socket.current.on("getUsers", users => { setUsersConnected(users) });
         }
+
     }, [currentUser])
 
     // Se ejecuta cada vez que cambia el estado de currentUser
@@ -79,7 +82,7 @@ const Chat = () => {
                     )}
 
                     {/* Usuarios conectados */}
-                    <ChatUsersConnect />
+                    <ChatUsersConnect usersConnected={usersConnected} contacts={contacts} />
                 </div>
             </Container>
         </>
@@ -94,17 +97,18 @@ const Container = styled.div`
     justify-content: center;
     gap: 1rem;
     align-items: center;
-    background-color: #001e13;
     .container {
         height: 85vh;
         width: 85vw;
-        background-color: #00000076;
+        background-color:#010e09f6;
         display: grid;
         grid-template-columns: 25% 50% 25%;
         padding: 0;
-        @media screen and (min-width: 720px) and (max-width: 1080px) {
-            grid-template-columns: 35% 65%;
+        // Para tamaños de tablets y celulares
+        @media (max-width: 768px) {
+            grid-template-columns: 35% 65% 0;
         }
+
     }
 `;
 

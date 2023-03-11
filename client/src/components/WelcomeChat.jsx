@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import styled from "styled-components"
-import Portada from "./../images/chat.gif"
+import Portada from "./../images/robot.gif"
 
 const Container = styled.div`
     display: flex;
@@ -9,10 +9,10 @@ const Container = styled.div`
     color: white;
     flex-direction: column;
     img {
-        height: 12rem;
+        height: 20rem;
     }
     span {
-        color: #4e0eff;
+        color: #0eff46ba;
     }
 `;
 
@@ -27,7 +27,7 @@ const WelcomeChat = () => {
         <Container>
             <img src={Portada} alt="chat animado" />
             <h1>
-                Bienvenido <span>{user}!</span>
+                Bienvenido/a <span>{user}!</span>
             </h1>
             <h3>Por favor, selecciona un chat</h3>
         </Container>

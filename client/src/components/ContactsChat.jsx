@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 const Container = styled.div`
     display: grid;
-    grid-template-rows: 85% 15%;
+    grid-template-rows: 88% 12%;
     overflow: hidden;
     background-color: #0e3928;
     .contacts {
