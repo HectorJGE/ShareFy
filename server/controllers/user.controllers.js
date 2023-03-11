@@ -7,7 +7,7 @@ module.exports = {
     getAllUsers: async (req, res, next) => {
         try {
             // Buscamos todos los usuarios que no sean el usuario que está haciendo la petición 
-            const users = await User.find({ _id: { $ne: req.params.id } }).select([
+            const users = await Usuario.find({ _id: { $ne: req.params.id } }).select([
                 "nombre",
                 "apellido",
                 "email",
