@@ -2,14 +2,15 @@ const mongoose = require("mongoose");
 const bcrypt = require('bcrypt')
 
 const UserSchema = new mongoose.Schema({
-
     nombre: {
         type: String,
-        required: [true, "Nombre es requerido"]
+        required: [true, "Nombre es requerido"],
+        minlength: [2, "Nombre debe tener 2 o más caractéres"]       
     },
     apellido: {
         type: String,
-        required: [true, "Apellido es requerido"]
+        required: [true, "Apellido es requerido"],
+        minlength: [2, "Apellido debe tener 2 o más caractéres"]
     },
     email: {
         type: String,
@@ -24,6 +25,10 @@ const UserSchema = new mongoose.Schema({
         type: String,
         required: [true, "Password es requerido"],
         minlength: [8, "Password debe tener 8 o más caractéres"]
+    },
+    profilePicture: {
+        type: String,
+        default: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Default_pfp.svg/1200px-Default_pfp.svg.png"
     }
 }, { timestamps: true });
 
