@@ -33,15 +33,12 @@ module.exports = (io) => {
         });
 
         // Enviar mensaje, recibe el id del usuario que envia el mensaje, el id del usuario que recibe el mensaje y el texto del mensaje
-        socket.on("sendMessage", ({ senderId, receiverId, text }) => {
+        socket.on("sendMessage", (data) => {
             // Obtener el user que recibe el mensaje
-            const user = getUser(receiverId);
+            const user = getUser(data.to);
             if (user) {
                 // Enviar el mensaje al usuario que recibe el mensaje
-                io.to(user.socketId).emit("getMessage", {
-                    senderId,
-                    text,
-                });
+                io.to(user.socketId).emit("getMessage", data.msg);
             } else {
                 console.log("No se ha encontrado el usuario");
             }
