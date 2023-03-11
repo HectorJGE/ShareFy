@@ -28,10 +28,17 @@ function NavBar() {
                     </div>
                     <div>
                         {
-                            currentURL.includes('/perfil/') ?
-                                <a className="btn btn-success mx-3" href={`/`}>Home</a> :
-                                <a className="btn btn-success mx-3" href={`/perfil/${idUser}`}>Perfil</a>
-                        }
+                            currentURL.includes('/chat') ?
+                                    <>
+                                        <a className="btn btn-success mx-3" href={`/`}>Home</a>
+                                        <a className="btn btn-success mr-3" href={`/perfil/${idUser}`}>Perfil</a>
+                                    </>
+                                :  currentURL.includes('/perfil/') ?
+                                    <a className="btn btn-success mr-3" href={`/`}>Home</a> 
+                                    :
+                                    <a className="btn btn-success mr-3" href={`/perfil/${idUser}`}>Perfil</a>
+                            }
+                        <a className="btn btn-success mx-3" href={`/chat`}>Chat</a>
                         <button className="btn btn-success" onClick={logout}>Salir</button>
                     </div>
                 </div>

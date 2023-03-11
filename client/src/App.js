@@ -7,6 +7,7 @@ import PublicacionView from "./views/PublicacionView";
 import PerfilUsuario from "./views/PerfilUsuario";
 import ConfirmacionBorrar from "./views/ConfirmacionBorrar";
 import EditarPublicacion from "./views/EditarPublicacion";
+import Chat from "./views/Chat";
 
 function App() {
 	const user = window.localStorage.getItem('loggedUser')
@@ -21,6 +22,7 @@ function App() {
 					<Route exact path="/editar/publicacion/:id" element={user ? <EditarPublicacion /> : <Navigate to="/login" />} />
 					<Route exact path="/borrar/publicacion/:id" element={user ? <ConfirmacionBorrar /> : <Navigate to="/login" />} />
 					<Route exact path="/login" element={user ? <Navigate to="/" /> : <Login />} />
+					<Route exact path="/chat" element={user ? <Chat /> : <Navigate to="/login" />} />
 					<Route exact path="/registro" element={user ? <Navigate to="/login" /> : <Registro />} />
 					<Route exact path="*" element={user ? <Navigate to="/login" /> : <Login />} />
 				</Routes>
