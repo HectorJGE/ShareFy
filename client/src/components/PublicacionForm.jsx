@@ -64,7 +64,8 @@ const PublicacionForm = () => {
     }
 
     const selectTrack = async (track) => {
-        await setCancion({ titulo: track.name, imgUrl: track.album.images[0]['url'], artist: track.artists[0].name })
+        console.log(track)
+        await setCancion({ titulo: track.name, imgUrl: track.album.images[0]['url'], artist: track.artists[0].name, songUrl: track.uri })
         await setSearchResults([])
     }
     const submitHandler = (e) => {

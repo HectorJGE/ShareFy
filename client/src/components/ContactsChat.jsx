@@ -20,6 +20,10 @@ const Container = styled.div`
                 border-radius: 1rem;
             }
         }
+        .contact:hover {
+            transition: 0.2s;
+            background-color: #8B8B8BC8;
+        }
         .contact {
             background-color: #4d4d4dc8;
             min-height: 4.2rem;
@@ -44,9 +48,10 @@ const Container = styled.div`
                 }
             }
         }
-        .selected {
+        .selected, .selected:hover {
             background-color: #56cb9c;
         }
+        
     }
 
     .current-user {
@@ -68,6 +73,13 @@ const Container = styled.div`
                 margin: 0;
             }
         }
+        
+        .username:hover {
+            h2 {
+                opacity: 0.65;
+                transition: 0.3s;
+            }
+        }
         @media screen and (min-width: 720px) and (max-width: 1080px) {
             gap: 0.5rem;
             .username {
@@ -84,9 +96,11 @@ const ContactsChat = ({ contacts, changeChat }) => {
     const [currentUserName, setCurrentUserName] = useState(undefined)
     const [currentUserImage, setCurrentUserImage] = useState(undefined)
     const [currentSelected, setCurrentSelected] = useState(undefined)
+    const [currentUrl, setCurrentUrl] = useState(undefined)
 
     useEffect(() => {
         const loggedUser = JSON.parse(window.localStorage.getItem('loggedUser'))
+        setCurrentUrl(loggedUser._id);
         setCurrentUserName(loggedUser.nombre + " " + loggedUser.apellido);
         setCurrentUserImage(loggedUser.profilePicture);
     }, [])
@@ -132,7 +146,7 @@ const ContactsChat = ({ contacts, changeChat }) => {
                             />
                         </div>
                         <div className="username">
-                            <h2>{currentUserName}</h2>
+                            <a className=" text-decoration-none" href={`/perfil/${currentUrl}`}><h2>{currentUserName}</h2></a>
                         </div>
                     </div>
                 </Container>

@@ -10,6 +10,9 @@ const PublicacionSchema = new mongoose.Schema({
         },
         artist: {
             type: String
+        },
+        songUrl: {
+            type: String
         }
     },
     cuerpo: {

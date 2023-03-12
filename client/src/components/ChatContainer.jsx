@@ -179,7 +179,9 @@ const ChatContainer = ({ currentChat, socket }) => {
                         <img src={currentChat.profilePicture} alt="icon avatar" />
                     </div>
                     <div className="username">
+                        <a className=" text-decoration-none" href={`/perfil/${currentChat._id}`}>
                         <h3>{capitalize(currentChat.nombre) + " " + capitalize(currentChat.apellido)}</h3>
+                        </a>
                     </div>
                 </div>
                 {/* <Logout /> */}
