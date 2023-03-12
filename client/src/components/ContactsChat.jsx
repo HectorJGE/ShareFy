@@ -3,17 +3,36 @@ import styled from "styled-components";
 import ProfilePicture from "./ProfilePicture";
 
 const Container = styled.div`
+    .btn-collapse{
+        @media screen and (min-width: 720px){
+            display:none;
+        }
+    }
     display: grid;
     grid-template-rows: 88% 12%;
     overflow: hidden;
-    background-color: #0e3928;
+    
+    @media screen and (min-width: 720px){
+        background-color: #0e3928;
+    }     
+    @media screen and (max-width: 720px){
+        display:block
+    }     
     .contacts {
+        
+        @media screen and (min-width: 720px){
+            display:flex
+        }     
+        
+        @media screen and (max-width: 720px){
+            max-height:200px
+        }   
+        background-color: #0e3928;
         padding-top:1rem;
-        display: flex;
         flex-direction: column;
-        align-items: center;
         overflow: auto;
         gap: 0.4rem;
+        
         &::-webkit-scrollbar {
             width: 0.2rem;
             &-thumb {
@@ -25,8 +44,12 @@ const Container = styled.div`
         .contact:hover {
             transition: 0.2s;
             background-color: #8B8B8BC8;
-        }
+        }   
         .contact {
+            
+            @media screen and (max-width: 720px){
+                margin-bottom:0.5rem;
+            }     
             background-color: #4d4d4dc8;
             min-height: 4.2rem;
             cursor: pointer;
@@ -82,7 +105,9 @@ const Container = styled.div`
                 transition: 0.3s;
             }
         }
-        @media screen and (min-width: 720px) and (max-width: 1080px) {
+        @media screen and (max-width: 1080px) {
+            height:100%;
+            display:none;
             gap: 0.5rem;
             .username {
                 h2 {
@@ -121,11 +146,16 @@ const ContactsChat = ({ contacts, changeChat }) => {
         <>
             {currentUserName && (
                 <Container>
-                    <div className="contacts">
+                    <div className="btn-collapse">
+                        <button class="btn btn-success" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                        Chats
+                        </button>
+                    </div>
+                    <div className="contacts collapse" id="collapseExample">
                         {contacts.map((contact, index) => {
                             return (
                                 <div key={contact._id}
-                                    className={`contact ${index === currentSelected ? "selected" : ""}` }
+                                    className={`mx-auto contact ${index === currentSelected ? "selected" : ""}` }
                                     onClick={() => changeChatCurrent(index, contact)} >
                                     {/* Icono del contacto */}
                                     <div className="avatar">
