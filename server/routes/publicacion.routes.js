@@ -14,7 +14,7 @@ router.delete("/publicacion/borrar/:_id", authenticate, ControladorPublicaciones
 router.put("/publicacion/agregar/comentario/:_id", authenticate, ControladorPublicaciones.actualizarPublicacionComentario);
 router.put("/publicacion/borrar/comentario/:_id", authenticate, ControladorPublicaciones.borrarComentario);
 //Likes
-router.put("/api/publicacion/like/:_id", authenticate, ControladorPublicaciones.actualizarPublicacionLike);
-router.put("/api/publicacion/unlike/:_id", authenticate, ControladorPublicaciones.deletelike);
+router.put("/publicacion/like/:_id", authenticate, ControladorPublicaciones.actualizarPublicacionLike);
+router.put("/publicacion/unlike/:_id", authenticate, ControladorPublicaciones.deletelike);
 
 module.exports = router;

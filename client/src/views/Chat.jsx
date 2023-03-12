@@ -82,7 +82,7 @@ const Chat = () => {
                     )}
 
                     {/* Usuarios conectados */}
-                    <ChatUsersConnect usersConnected={usersConnected} contacts={contacts} />
+                    <ChatUsersConnect usersConnected={usersConnected} contacts={contacts} changeChat={handleChatChange}/>
                 </div>
             </Container>
         </>
