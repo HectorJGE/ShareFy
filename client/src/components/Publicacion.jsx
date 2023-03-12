@@ -32,7 +32,7 @@ function Publicacion(props) {
                 </div>
             </div>
             <div className="card-body">
-                <a className=' link-success text-decoration-none fw-bold' href={`/publicacion/${props.idP}`}>
+                <a className=' link-success text-decoration-none fw-bold' href={`${props.cancion.songUrl}`}>
                     <SearchResultado title={props.cancion.titulo} img={props.cancion.imgUrl} artist={props.cancion.artist}></SearchResultado>
                 </a>
                 <p className="card-text">{props.cuerpo}</p>
