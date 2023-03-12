@@ -66,8 +66,8 @@ const Chat = () => {
     return (
         <>
             <NavBar />
-            {/* // Container principal */}
             <Container>
+                {/* // Container principal */}
                 <div className="container">
                     {/* Tiene que ser una columna que agrupe los contactos uno sobre otros, el changeChat es para saber sobre que contacto se hizo click */}
                     <ContactsChat contacts={contacts} changeChat={handleChatChange} />
@@ -78,11 +78,11 @@ const Chat = () => {
                         <WelcomeChat />
                     ) : (
                         // En caso de que haya un chat seleccionado, se muestra el chat
-                        <ChatContainer currentChat={currentChat} socket={socket} />
+                        <ChatContainer className="aaa" currentChat={currentChat} socket={socket} />
                     )}
 
                     {/* Usuarios conectados */}
-                    <ChatUsersConnect usersConnected={usersConnected} contacts={contacts} changeChat={handleChatChange}/>
+                    <ChatUsersConnect className="Cu" usersConnected={usersConnected} contacts={contacts} changeChat={handleChatChange}/>
                 </div>
             </Container>
         </>
@@ -90,25 +90,30 @@ const Chat = () => {
 }
 
 const Container = styled.div`
-    height: 100vh;
+    height: 95vh;
     width: 100vw;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    gap: 1rem;
     align-items: center;
+    @media (max-width: 768px) {
+        height: 86vh;
+        width: 100vw;
+    }
     .container {
         height: 85vh;
         width: 85vw;
         background-color:#010e09f6;
         display: grid;
         grid-template-columns: 25% 50% 25%;
-        padding: 0;
+        padding: 0px;
         // Para tamaños de tablets y celulares
         @media (max-width: 768px) {
-            grid-template-columns: 35% 65% 0;
+            background-color:#010E0900;
+            display: block;
+            height: 90vh;
+            width: 100vw;
         }
-
     }
 `;
 

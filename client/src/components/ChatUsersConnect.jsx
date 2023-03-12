@@ -4,6 +4,11 @@ import OfflineUsers from "./OfflineUsers";
 import ProfilePicture from "./ProfilePicture";
 
 const Contenedor = styled.div`
+
+    @media (max-width: 768px) {
+        display: none;
+        
+    }
     display: grid;
     grid-template-rows: 10% 90%;
     overflow: hidden;
