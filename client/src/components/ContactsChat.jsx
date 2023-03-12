@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react"
 import styled from "styled-components";
+import ProfilePicture from "./ProfilePicture";
 
 const Container = styled.div`
     display: grid;
@@ -7,11 +8,12 @@ const Container = styled.div`
     overflow: hidden;
     background-color: #0e3928;
     .contacts {
+        padding-top:1rem;
         display: flex;
         flex-direction: column;
         align-items: center;
         overflow: auto;
-        gap: 0.8rem;
+        gap: 0.4rem;
         &::-webkit-scrollbar {
             width: 0.2rem;
             &-thumb {
@@ -28,9 +30,9 @@ const Container = styled.div`
             background-color: #4d4d4dc8;
             min-height: 4.2rem;
             cursor: pointer;
-            width: 90%;
+            width: 95%;
             border-radius: 0.2rem;
-            padding: 0.4rem;
+            padding: 1rem;
             display: flex;
             gap: 1rem;
             align-items: center;
@@ -57,7 +59,7 @@ const Container = styled.div`
     .current-user {
         background-color: #0c6542;
         display: flex;
-        justify-content: center;
+        justify-content: start;
         align-items: center;
         gap: 1.5rem;
         .avatar {
@@ -127,7 +129,7 @@ const ContactsChat = ({ contacts, changeChat }) => {
                                     onClick={() => changeChatCurrent(index, contact)} >
                                     {/* Icono del contacto */}
                                     <div className="avatar">
-                                        <img src={contact.profilePicture} alt="userImage" />
+                                        <ProfilePicture currentUserImage={contact.profilePicture} px="40px"></ProfilePicture>
                                     </div>
                                     {/* Nombre del contacto */}
                                     <div className="username">
@@ -138,12 +140,9 @@ const ContactsChat = ({ contacts, changeChat }) => {
                         })}
                     </div>
                     {/* Usuario actual */}
-                    <div className="current-user">
-                        <div className="avatar">
-                            <img
-                                src={currentUserImage}
-                                alt="avatar"
-                            />
+                    <div className="current-user ">
+                        <div className="avatar ms-3">
+                            <ProfilePicture currentUserImage={currentUserImage} px="50px"></ProfilePicture>
                         </div>
                         <div className="username">
                             <a className=" text-decoration-none" href={`/perfil/${currentUrl}`}><h2>{currentUserName}</h2></a>

@@ -4,6 +4,7 @@ import axios from "axios";
 import { useParams, useNavigate } from "react-router-dom";
 import Publicacion from "../components/Publicacion.jsx";
 import { borrarPublicacionRoute, publicacionRoute } from "../utils/APIRoutes.js";
+import Container from "../utils/responsive.js";
 
 function ConfirmacionBorrar(props) {
     const { id } = useParams()
@@ -27,7 +28,7 @@ function ConfirmacionBorrar(props) {
     }
 
     return (
-        <>
+        <Container>
             <NavBar></NavBar>
             <center>
                 <div className="Container w-25">
@@ -47,7 +48,7 @@ function ConfirmacionBorrar(props) {
                     }
                 </div>
             </center>
-        </>
+        </Container>
     );
 }
 

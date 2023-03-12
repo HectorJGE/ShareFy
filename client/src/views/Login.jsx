@@ -1,13 +1,16 @@
 import React from "react";
 import LoginForm from "../components/LoginForm";
+import Container from "../utils/responsive";
 
 function Login() {
     return (
-        <center>
-            <div className="Container w-25">
-                <LoginForm></LoginForm>
-            </div>
-        </center>
+        <Container>
+            <center>
+                <div className="Container w-25">
+                    <LoginForm></LoginForm>
+                </div>
+            </center>
+        </Container>
     );
 }
 

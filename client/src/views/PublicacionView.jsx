@@ -5,6 +5,7 @@ import { useParams } from "react-router-dom";
 import Publicacion from "../components/Publicacion.jsx";
 import ComentariosForm from "../components/ComentariosForm.jsx";
 import Comentario from "../components/Comentario.jsx";
+import Container from "../utils/responsive.js";
 import { publicacionRoute } from "../utils/APIRoutes.js";
 
 function PublicacionView(props) {
@@ -21,7 +22,7 @@ function PublicacionView(props) {
     }, [id])
 
     return (
-        <>
+        <Container>
             <NavBar></NavBar>
             <center>
                 <div className="Container w-25">
@@ -38,7 +39,7 @@ function PublicacionView(props) {
                     }
                 </div>
             </center>
-        </>
+        </Container>
     );
 }
 

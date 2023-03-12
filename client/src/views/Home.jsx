@@ -4,6 +4,7 @@ import axios from 'axios'
 import PublicacionForm from '../components/PublicacionForm'
 import Publicacion from "../components/Publicacion.jsx";
 import { allPublicacionesRoute } from "../utils/APIRoutes.js";
+import Container from "../utils/responsive.js";
 
 function Home() {
     const [publicaciones, setPublicaciones] = useState()
@@ -15,7 +16,7 @@ function Home() {
     }, [])
 
     return (
-        <>
+        <Container>      
             <NavBar></NavBar>
             <center>
                 <div className="Container w-25">
@@ -27,7 +28,7 @@ function Home() {
                     }) : null}
                 </div>
             </center>
-        </>
+        </Container>
     );
 }
 
