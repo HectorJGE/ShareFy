@@ -1,4 +1,5 @@
 const Usuario = require("./../models/user.model")
+const Publicacion = require("./../models/publicacion.model")
 const jwt = require('jsonwebtoken')
 const bcrypt = require('bcrypt')
 const key = process.env.SECRET_KEY
@@ -67,6 +68,14 @@ module.exports = {
     logOutUser: (req, res) => {
         res.clearCookie('userToken')
         res.json({ success: 'Usuario salio' })
+    },
+
+    updateExistingUsuario: async (req, res) => {
+        const usuario = await Usuario.findOneAndUpdate({ _id: req.params._id} , req.body, { runValidators: true , new: true })
+            .then(updatedUsuario =>{ 
+                res.json({ updatedUsuario })
+            })
+            .catch(err => res.json({ message: "Error, algo salió mal", error: err }));
     }
 
 }
