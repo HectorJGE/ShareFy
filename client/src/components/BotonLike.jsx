@@ -28,12 +28,10 @@ function BotonLike(props) {
         axios.put(`${publicacionRoute}/${param}/${props.idP}`, {
             idUser
         }, { withCredentials: true })
-            .then((res) => {
-                console.log(res)
-            })
-            .catch((e) => console.log(e))
-        console.log(props.idP)
-        console.log(idUser)
+        .then((res) => {
+            console.log(res)
+        })
+        .catch((e) => console.log(e.response))
     }
 
     const Like = () => {

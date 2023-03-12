@@ -67,7 +67,7 @@ const Contenedor = styled.div`
     }
 `;
 
-const ChatUsersConnect = ({ usersConnected, contacts }) => {
+const ChatUsersConnect = ({ usersConnected, contacts,changeChat }) => {
     const [users, setUsers] = useState([])
 
     useEffect(() => {
@@ -85,6 +85,10 @@ const ChatUsersConnect = ({ usersConnected, contacts }) => {
         return str.charAt(0).toUpperCase() + str.slice(1);
     }
 
+    // Función que se ejecuta cuando se cambia de chat
+    const changeChatCurrent = (index, contact) => {
+        changeChat(contact);
+    };
     return (
         <Contenedor>
             <div className="title">Usuarios en Linea</div>
@@ -92,7 +96,7 @@ const ChatUsersConnect = ({ usersConnected, contacts }) => {
             <div className="contacts">
                 {users.map((contact, index) => {
                     return (
-                        <div key={contact._id} className="contact" >
+                        <div key={contact._id} className="contact" onClick={() => changeChatCurrent(index, contact)} >
                             <div className="avatar">
                                 <img src={contact.profilePicture} alt="userImage" />
                             </div>
