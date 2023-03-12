@@ -41,6 +41,12 @@ const editarPublicacion = (req, res) => {
 		.catch(err => res.json({ message: "Error, algo salió mal", error: err }));
 };
 
+const actualizarNombrePublicaciones = (req, res) => {
+	console.log(req.params._id);
+	Publicacion.updateMany( {"usuario.id":req.params._id} , {"usuario.nombre":req.body.nombre}, { new: true })
+		.then(publicacion => console.log({ publicacion }))
+		.catch(err => res.json({ message: "Error, algo salió mal", error: err }));
+};
 const borrarComentario = (req, res) => {
 	Publicacion.findOneAndUpdate({ _id: req.params._id }, { $pull: { comentarios: req.body } }, { new: true })
 		.then(publicacion => console.log({ publicacion }))
@@ -72,6 +78,7 @@ module.exports = {
 	PublicacionPorId,
 	actualizarPublicacionComentario,
 	editarPublicacion,
+	actualizarNombrePublicaciones,
 	borrarComentario,
 	actualizarPublicacionLike,
 	deletelike,
