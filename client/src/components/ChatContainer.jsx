@@ -6,6 +6,7 @@ import ChatInput from "./ChatInput";
 import { v4 as uuidv4 } from "uuid";
 import axios from "axios";
 import { addMessageRoute, getMessageRoute } from "./../utils/APIRoutes";
+import ProfilePicture from "./ProfilePicture";
 
 const Container = styled.div`
     display: grid;
@@ -176,7 +177,7 @@ const ChatContainer = ({ currentChat, socket }) => {
             <div className="chat-header">
                 <div className="user-details">
                     <div className="avatar">
-                        <img src={currentChat.profilePicture} alt="icon avatar" />
+                        <ProfilePicture currentUserImage={currentChat.profilePicture} px="50px"></ProfilePicture>
                     </div>
                     <div className="username">
                         <a className=" text-decoration-none" href={`/perfil/${currentChat._id}`}>

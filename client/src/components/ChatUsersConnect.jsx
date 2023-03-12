@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import styled from "styled-components"
 import OfflineUsers from "./OfflineUsers";
+import ProfilePicture from "./ProfilePicture";
 
 const Contenedor = styled.div`
     display: grid;
@@ -14,6 +15,7 @@ const Contenedor = styled.div`
         justify-content: center;
         align-items: center;
         font-weight: bold;
+        padding:20px;
     }
     .contacts {
         display: flex;
@@ -32,8 +34,6 @@ const Contenedor = styled.div`
         .contact {
             display: flex;
             flex-direction: row;
-
-            background-color: #4d4d4dc8;
             min-height: 4.2rem;
             cursor: pointer;
             width: 90%;
@@ -91,14 +91,16 @@ const ChatUsersConnect = ({ usersConnected, contacts,changeChat }) => {
     };
     return (
         <Contenedor>
-            <div className="title">Usuarios en Linea</div>
+            <div className="title">
+                <h4>Usuarios en Linea</h4>
+            </div>
             { users.length === 0 && <OfflineUsers /> }
             <div className="contacts">
                 {users.map((contact, index) => {
                     return (
                         <div key={contact._id} className="contact" onClick={() => changeChatCurrent(index, contact)} >
                             <div className="avatar">
-                                <img src={contact.profilePicture} alt="userImage" />
+                                <ProfilePicture currentUserImage={contact.profilePicture} px="40px"></ProfilePicture>
                             </div>
                             {/* Nombre del contacto */}
                             <div className="username">

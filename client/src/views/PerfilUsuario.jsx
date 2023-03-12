@@ -3,9 +3,10 @@ import NavBar from "../components/NavBar.jsx";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import Publicacion from "../components/Publicacion.jsx";
+import Container from "../utils/responsive.js";
 import {BsPencil} from "react-icons/bs"
 import { getUserRoute, publicacionUserRoute } from "../utils/APIRoutes.js";
-import perfilcito from '../images/sharefy_logo.png';
+import ProfilePicture from "../components/ProfilePicture.jsx";
 
 function PerfilUsuario() {
     const { id } = useParams()
@@ -30,6 +31,7 @@ function PerfilUsuario() {
         <>
             <NavBar></NavBar>
             <center>
+                <Container>
                 <div className="Container w-25 card my-3 text-start">
                     <div className="row card-header">
                         <div className="col">
@@ -43,7 +45,7 @@ function PerfilUsuario() {
                     </div>
                     <div className="card-body">
                         <div className="m-2 text-center">
-                            <img src={perfilcito} alt="perfil" className="img-circle img-fluid" style={{ height: "100px", width: "100px" }}/>
+                            <ProfilePicture currentUserImage={user.profilePicture} px="100px"></ProfilePicture>
                             <h5 className="mx-auto mt-4">{user.nombre} {user.apellido}</h5>
                             <h5 className="text-muted">{user.email}</h5>
                         </div>
@@ -54,6 +56,7 @@ function PerfilUsuario() {
                         return <Publicacion key={key} uid={index.usuario.id} cancion={index.cancion} idP={index._id} unombre={index.usuario.nombre} titulo={index.titulo} cuerpo={index.cuerpo} likes={index.likes} />
                     }) : null}
                 </div>
+                </Container>
             </center>
         </>
     );

@@ -5,6 +5,7 @@ import { editarNombrePublicacionRoute, editarPerfilRoute, getUserRoute } from ".
 
 const PerfilForm = () => {
 
+    const [profilePicture,setProfilePicture] = useState('');
     const [nombre,setNombre] = useState('');
     const [apellido,setApellido] = useState('');
     const [email,setEmail] = useState('');
@@ -19,6 +20,7 @@ const PerfilForm = () => {
                 setNombre(res.data.user.nombre)
                 setApellido(res.data.user.apellido)
                 setEmail(res.data.user.email)
+                setProfilePicture(res.data.user.profilePicture)
             })
             .catch((e) => console.log(e))
     }, [id])
@@ -27,7 +29,7 @@ const PerfilForm = () => {
         e.preventDefault()
 
         axios.put(`${editarPerfilRoute}/${id}`, {
-            nombre, apellido, email
+            profilePicture,nombre, apellido, email
         }, { withCredentials: true })
         .then(res => console.log(res))
         .catch((err) => console.log(err))
@@ -46,6 +48,11 @@ const PerfilForm = () => {
             <form onSubmit={submitHandler}>
                 <div className={`form-control my-5 border-success text-center bg-light`}>
                         <h5 className="my-3 text-success">Editar Perfil</h5>
+                    <div className="form-floating my-3">
+                        <input name="ImagenPerfil" type='text' className="form-control border-success-subtle" id="floatingInput" placeholder="Imagen de Perfil..." 
+                        value={profilePicture} onChange={(e) => { setProfilePicture(e.target.value) }}></input>
+                        <label htmlFor="floatingTextarea2">Url Imagen de perfil</label>
+                    </div>
                     <div className="form-floating my-3">
                         <input name="nombre" type='text' className="form-control border-success-subtle" id="floatingInput" placeholder="Nombre..." 
                         value={nombre} onChange={(e) => { setNombre(e.target.value) }}></input>
