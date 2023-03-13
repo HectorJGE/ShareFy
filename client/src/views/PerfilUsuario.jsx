@@ -13,6 +13,7 @@ function PerfilUsuario() {
     const [user, setUser] = useState({})
     const [publicaciones, setPublicaciones] = useState()
     const currentURL = window.location.pathname
+    const loggedUser = JSON.parse(window.localStorage.getItem('loggedUser'))._id
 
     useEffect(() => {
         axios.get(`${publicacionUserRoute}/${id}`, { withCredentials: true })
@@ -37,11 +38,15 @@ function PerfilUsuario() {
                         <div className="col">
                             <span className='text-success text-decoration-none fw-bold'>Perfil</span>
                         </div>
-                        <div className="col text-end">
-                            <a className="text-success" href={`/editar/perfil/${id}`}>
-                                {currentURL.includes('editar')?null:<BsPencil/>}
-                            </a>
-                        </div>
+                        {loggedUser === id?
+                        <>
+                            <div className="col text-end">
+                                <a className="text-success" href={`/editar/perfil/${id}`}>
+                                    {currentURL.includes('editar')?null:<BsPencil/>}
+                                </a>
+                            </div>
+                        </>
+                        :null}
                     </div>
                     <div className="card-body">
                         <div className="m-2 text-center">
