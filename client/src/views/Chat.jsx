@@ -9,6 +9,7 @@ import styled from "styled-components";
 import ChatUsersConnect from "../components/ChatUsersConnect";
 import NavBar from "../components/NavBar";
 import WelcomeChat from "../components/WelcomeChat";
+import Container from "../utils/responsive";
 
 
 const Chat = () => {
@@ -64,9 +65,9 @@ const Chat = () => {
     }
 
     return (
-        <>
+        <Container>  
             <NavBar />
-            <Container>
+            <EstiloChat>
                 {/* // Container principal */}
                 <div className="container">
                     {/* Tiene que ser una columna que agrupe los contactos uno sobre otros, el changeChat es para saber sobre que contacto se hizo click */}
@@ -84,12 +85,12 @@ const Chat = () => {
                     {/* Usuarios conectados */}
                     <ChatUsersConnect className="Cu" usersConnected={usersConnected} contacts={contacts} changeChat={handleChatChange}/>
                 </div>
-            </Container>
-        </>
+            </EstiloChat>
+        </Container>
     )
 }
 
-const Container = styled.div`
+const EstiloChat = styled.div`
     height: 95vh;
     width: 100vw;
     display: flex;
