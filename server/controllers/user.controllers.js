@@ -76,6 +76,23 @@ module.exports = {
                 res.json({ updatedUsuario })
             })
             .catch(err => res.json({ message: "Error, algo salió mal", error: err }));
+    },
+
+    addFollow: async (req, res) => {
+        try{
+            const response = {}
+            const fromUser = await Usuario.findOneAndUpdate({ _id: req.body.idFrom }, { $addToSet: {followed: req.body.idTo}} , { new: true } )
+                .then(updatedUsuario => {
+                    response = { ...response, updatedUsuario}
+                })
+            const toUser = await Usuario.findOneAndUpdate({ _id: req.body.idTo }, { $addToSet: {followers: req.body.idFrom}} , { new: true } )
+                .then(updatedUsuario => {
+                    response = { ...response, updatedUsuario}
+                })
+                res.json(response)
+        }catch(err){
+            res.json({ message: "Error, algo salió mal", error: err })
+        }
     }
 
 }
