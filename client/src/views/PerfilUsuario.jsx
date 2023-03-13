@@ -29,13 +29,13 @@ function PerfilUsuario() {
 
     return (
         <>
-            <NavBar></NavBar>
             <center>
                 <Container>
+                <NavBar></NavBar>
                 <div className="Container w-25 card my-3 text-start">
                     <div className="row card-header">
                         <div className="col">
-                            <span className='link-success text-decoration-none fw-bold'>Perfil</span>
+                            <span className='text-success text-decoration-none fw-bold'>Perfil</span>
                         </div>
                         <div className="col text-end">
                             <a className="text-success" href={`/editar/perfil/${id}`}>
