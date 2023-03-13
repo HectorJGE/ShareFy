@@ -76,6 +76,64 @@ module.exports = {
                 res.json({ updatedUsuario })
             })
             .catch(err => res.json({ message: "Error, algo salió mal", error: err }));
+    },
+
+    addFollow: async (req, res) => {
+        try{
+            let mensaje = {}
+            await Usuario.findOneAndUpdate({ _id: req.body.idFrom }, { $addToSet: {followed: req.body.idTo}} , { runValidators: true , new: true } )
+                .then(follower => {
+                    mensaje = {follower}
+                })
+            await Usuario.findOneAndUpdate({ _id: req.body.idTo }, { $addToSet: {followers: req.body.idFrom}} , { runValidators: true , new: true } )
+                .then(followed => {
+                    mensaje = {...mensaje, followed}
+                })
+            res.json(mensaje)
+        }catch(err){
+            res.json({ message: "Error, algo salió mal", error: err })
+        }
+    },
+
+    getFollowers: async (req, res) => {
+        const followers = await Usuario.findOne({ _id: req.params._id }).select(["followers"])
+        const followersData = await Usuario.find({ _id: { $in: followers.followers }}).select([
+            "nombre",
+            "apellido",
+            "email",
+            "profilePicture",
+            "_id"
+        ])
+        res.json(followersData)
+    },
+
+    getFollowed: async (req, res) => {
+        const followed = await Usuario.findOne({ _id: req.params._id }).select(["followed"])
+        const followedData = await Usuario.find({ _id: { $in: followed.followed }}).select([
+            "nombre",
+            "apellido",
+            "email",
+            "profilePicture",
+            "_id"
+        ])
+        res.json(followedData)
+    },
+
+    unfollow: async (req,res) => {
+        try{
+            let mensaje = {}
+            await Usuario.findOneAndUpdate({ _id: req.body.idFrom }, { $pull: {followed: req.body.idTo}} , { runValidators: true , new: true } )
+                .then(follower => {
+                    mensaje = {follower}
+                })
+            await Usuario.findOneAndUpdate({ _id: req.body.idTo }, { $pull: {followers: req.body.idFrom}} , { runValidators: true , new: true } )
+                .then(followed => {
+                    mensaje = {...mensaje, followed}
+                })
+            res.json(mensaje)
+        }catch(err){
+            res.json({ message: "Error, algo salió mal", error: err })
+        }
     }
 
 }

@@ -29,7 +29,9 @@ const UserSchema = new mongoose.Schema({
     profilePicture: {
         type: String,
         default: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Default_pfp.svg/1200px-Default_pfp.svg.png"
-    }
+    },
+    followers: [],
+    followed: []
 }, { timestamps: true });
 
 UserSchema.pre('save', async function (next) {
