@@ -31,7 +31,12 @@ const PerfilForm = () => {
         axios.put(`${editarPerfilRoute}/${id}`, {
             profilePicture,nombre, apellido, email
         }, { withCredentials: true })
-        .then(res => console.log(res))
+        .then(res => {
+            console.log(res)
+            window.localStorage.setItem(
+                'loggedUser', JSON.stringify(res.data.updatedUsuario)
+            )
+        })
         .catch((err) => console.log(err))
 
         axios.put(`${editarNombrePublicacionRoute}/${id}`, {

@@ -104,7 +104,7 @@ const PublicacionForm = () => {
                         <h5 className="my-3 text-success">Editar Publicación</h5>
                         : null}
                     <div className="form-floating my-3">
-                        <input name="cancion" type='search' className="form-control border-success-subtle" placeholder="Canción..." onChange={Searching}></input>
+                        <input  autoComplete="off"  name="cancion" type='search' className="form-control border-success-subtle" placeholder="Canción..." onChange={Searching}></input>
                         <label htmlFor="floatingTextarea2">Canción</label>
 
                     </div>
