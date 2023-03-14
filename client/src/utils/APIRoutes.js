@@ -22,10 +22,12 @@ const editarPerfilRoute = `${host}/api/user/editar/perfil`; // Se le pasa adicio
 const addFollowRoute = `${host}/api/user/addFollow`;
 const unfollowRoute = `${host}/api/user/unfollow`;
 const isFollowing = `${host}/api/user/isFollowing`;
+const getFollowedRoute = `${host}/api/user/getFollowed`;
 
 // Para los mensajes
 const addMessageRoute = `${host}/api/message/add`;
 const getMessageRoute = `${host}/api/message/get`;
+const getNonFollowedSendersRoute = `${host}/api/message/getSenders`;
 
 // Exportamos las rutas
 export { 
@@ -37,6 +39,7 @@ export {
     addFollowRoute,
     unfollowRoute,
     isFollowing,
+    getFollowedRoute,
     nuevaPublicacionRoute,
     borrarComentarioRoute,
     agregarComentarioRoute,
@@ -49,5 +52,6 @@ export {
     logoutRoute,
     registerRoute,
     addMessageRoute, 
-    getMessageRoute
+    getMessageRoute,
+    getNonFollowedSendersRoute
 };
