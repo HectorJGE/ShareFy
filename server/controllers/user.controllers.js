@@ -89,11 +89,13 @@ module.exports = {
             let mensaje = {}
             await Usuario.findOneAndUpdate({ _id: req.body.idFrom }, { $addToSet: {followed: req.body.idTo}} , { runValidators: true , new: true } )
                 .then(follower => {
-                    mensaje = {follower}
+                    const { _id, nombre, apellido } = follower
+                    mensaje = {follower: { _id, nombre, apellido }}
                 })
             await Usuario.findOneAndUpdate({ _id: req.body.idTo }, { $addToSet: {followers: req.body.idFrom}} , { runValidators: true , new: true } )
                 .then(followed => {
-                    mensaje = {...mensaje, followed}
+                    const { _id, nombre, apellido } = followed
+                    mensaje = {...mensaje, followed: { _id, nombre, apellido }}
                 })
             res.json(mensaje)
         }catch(err){
@@ -130,16 +132,23 @@ module.exports = {
             let mensaje = {}
             await Usuario.findOneAndUpdate({ _id: req.body.idFrom }, { $pull: {followed: req.body.idTo}} , { runValidators: true , new: true } )
                 .then(follower => {
-                    mensaje = {follower}
+                    const { _id, nombre, apellido } = follower
+                    mensaje = {follower: { _id, nombre, apellido }}
                 })
             await Usuario.findOneAndUpdate({ _id: req.body.idTo }, { $pull: {followers: req.body.idFrom}} , { runValidators: true , new: true } )
                 .then(followed => {
-                    mensaje = {...mensaje, followed}
+                    const { _id, nombre, apellido } = followed
+                    mensaje = {...mensaje, followed: { _id, nombre, apellido }}
                 })
             res.json(mensaje)
         }catch(err){
             res.json({ message: "Error, algo salió mal", error: err })
         }
+    },
+
+    isFollowing: async (req,res) => {
+        const userFollows = await Usuario.findOne({ _id: req.body.idFrom }).select(["followed"])
+        res.json({ follows: userFollows.followed.includes(req.body.idTo) })
     }
 
 }

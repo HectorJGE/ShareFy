@@ -13,5 +13,6 @@ router.put("/user/addFollow", ControladorUsuarios.addFollow);
 router.put("/user/unfollow", ControladorUsuarios.unfollow);
 router.get("/user/getFollowed/:_id", ControladorUsuarios.getFollowed);
 router.get("/user/getFollowers/:_id", ControladorUsuarios.getFollowers);
+router.post("/user/isFollowing", ControladorUsuarios.isFollowing);
 
 module.exports = router;
