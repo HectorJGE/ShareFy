@@ -1,4 +1,5 @@
 const Messages = require('./../models/message.model');
+const Users = require('./../models/user.model');
 
 // Este método obtiene los mensajes entre dos usuarios
 const getMessages = (req, res, next) => {
@@ -28,6 +29,37 @@ const getMessages = (req, res, next) => {
         });
 };
 
+
+const getNonFollowedSenders = (req, res) => {
+    // Obtenemos los usuarios de la petición (from y to)
+    const { from, to } = req.body;
+
+    // Busca todos los mensajes enviados a to por parte de los usuarios en from
+    Messages.find({
+        users: {$nin: from, $eq: to},
+    }).select(["sender"]).then((senders) => {
+            // Nos aseguramos de no tener repeticiones en la respuesta a la consulta
+            const onlySenders = senders.map( (value) => value.sender.toString() )
+            const uniqueSenders = onlySenders.filter((element, index) => {
+                return onlySenders.indexOf(element) === index;
+            })
+            Users.find({ _id: { $in: uniqueSenders }})
+                .select([
+                    "nombre",
+                    "apellido",
+                    "email",
+                    "profilePicture",
+                    "_id"
+                ])
+                .then( (users) => {
+                    res.json(users)
+                } )
+        })
+        .catch((err) => {
+            res.status(401).json(err)
+        });
+};
+
 // Este método crea un mensaje entre dos usuarios
 const createMessage = (req, res, next) => {
     // Obtenemo los usuarios y el mensaje de la petición (from, to y message)
@@ -54,5 +86,6 @@ const createMessage = (req, res, next) => {
 
 module.exports = {
     getMessages,
-    createMessage
+    createMessage,
+    getNonFollowedSenders
 };

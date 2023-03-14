@@ -9,5 +9,10 @@ router.get("/search/users/:query", ControladorUsuarios.searchUsuarios);
 router.get('/logout', ControladorUsuarios.logOutUser);
 router.get("/allUsers/:id", ControladorUsuarios.getAllUsers);
 router.put("/user/editar/perfil/:_id", ControladorUsuarios.updateExistingUsuario);
+router.put("/user/addFollow", ControladorUsuarios.addFollow);
+router.put("/user/unfollow", ControladorUsuarios.unfollow);
+router.get("/user/getFollowed/:_id", ControladorUsuarios.getFollowed);
+router.get("/user/getFollowers/:_id", ControladorUsuarios.getFollowers);
+router.post("/user/isFollowing", ControladorUsuarios.isFollowing);
 
 module.exports = router;

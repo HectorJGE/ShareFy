@@ -2,7 +2,7 @@ import React, { useEffect, useState, useRef } from "react";
 import axios from "axios";
 import { io } from "socket.io-client";
 import { useNavigate } from "react-router-dom";
-import { allUsersRoute } from "../utils/APIRoutes";
+import { getNonFollowedSendersRoute, getFollowedRoute } from "../utils/APIRoutes";
 import ContactsChat from "../components/ContactsChat";
 import ChatContainer from "../components/ChatContainer";
 import styled from "styled-components";
@@ -49,9 +49,13 @@ const Chat = () => {
     useEffect(() => {
         // Si el usuario esta logueado, obtenemos los contactos
         if (currentUser) {
-            axios.get(`${allUsersRoute}/${currentUser}`)
+            axios.get(`${getFollowedRoute}/${currentUser}`, { withCredentials: true })
                 .then(res => {
                     setContacts(res.data)
+                    axios.post(`${getNonFollowedSendersRoute}`, { from: res.data.map( (value) => value._id.toString() ), to: currentUser}, { withCredentials: true })
+                        .then( res => {
+                            setContacts(c => [...c,...res.data])
+                        })
                 })
                 .catch(err => {
                     console.log(err)

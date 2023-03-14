@@ -5,13 +5,14 @@ import { useParams } from "react-router-dom";
 import Publicacion from "../components/Publicacion.jsx";
 import Container from "../utils/responsive.js";
 import {BsPencil} from "react-icons/bs"
-import { getUserRoute, publicacionUserRoute } from "../utils/APIRoutes.js";
+import { getUserRoute, publicacionUserRoute, addFollowRoute, unfollowRoute , isFollowing } from "../utils/APIRoutes.js";
 import ProfilePicture from "../components/ProfilePicture.jsx";
 
 function PerfilUsuario() {
     const { id } = useParams()
     const [user, setUser] = useState({})
     const [publicaciones, setPublicaciones] = useState()
+    const [seguido, setSeguido] = useState(true)
     const currentURL = window.location.pathname
     const loggedUser = JSON.parse(window.localStorage.getItem('loggedUser'))._id
 
@@ -26,7 +27,28 @@ function PerfilUsuario() {
                 setUser(res.data.user)
             })
             .catch((e) => console.log(e))
-    }, [id])
+
+        axios.post(`${isFollowing}`, {idFrom: loggedUser, idTo: id}, { withCredentials: true })
+            .then( (res)=>{
+                setSeguido(res.data.follows)
+            })
+    }, [id,loggedUser])
+
+    const handleFollow = () => {
+        if(seguido){
+            axios.put(`${unfollowRoute}`, { idFrom: loggedUser, idTo: id }, { withCredentials: true })
+                .then( (res) => {
+                    console.log(res);
+                    setSeguido(false)
+                })
+        }else{
+            axios.put(`${addFollowRoute}`, { idFrom: loggedUser, idTo: id }, { withCredentials: true })
+                .then( (res) => {
+                    console.log(res);
+                    setSeguido(true)
+                })
+        }
+    }
 
     return (
         <>
@@ -53,6 +75,14 @@ function PerfilUsuario() {
                             <ProfilePicture currentUserImage={user.profilePicture} px="100px"></ProfilePicture>
                             <h5 className="mx-auto mt-4">{user.nombre} {user.apellido}</h5>
                             <h5 className="text-muted">{user.email}</h5>
+                            {loggedUser === id?
+                                null
+                            :
+                                seguido?
+                                <button type="button" class="btn btn-secondary btn-sm" onClick={handleFollow}>Seguido</button>
+                                :
+                                <button type="button" class="btn btn-primary btn-sm" onClick={handleFollow}>Seguir</button>
+                            }
                         </div>
                     </div>
                 </div>
