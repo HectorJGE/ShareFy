@@ -147,7 +147,7 @@ const ContactsChat = ({ contacts, changeChat }) => {
             {currentUserName && (
                 <Container>
                     <div className="btn-collapse">
-                        <button class="btn btn-success" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                        <button className="btn btn-success" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
                         Chats
                         </button>
                     </div>

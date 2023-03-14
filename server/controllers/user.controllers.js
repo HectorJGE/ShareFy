@@ -65,6 +65,12 @@ module.exports = {
             .catch(err => res.json({ message: "Error, algo salió mal", error: err }));
     },
 
+    searchUsuarios: async (req, res) => {
+        const usuario = await Usuario.find({ nombre: {$regex : "^" + req.params.query} })
+            .then(users => res.json(users))
+            .catch(err => res.json({ message: "Error, algo salió mal", error: err }));
+    },
+
     logOutUser: (req, res) => {
         res.clearCookie('userToken')
         res.json({ success: 'Usuario salio' })

@@ -16,6 +16,7 @@ const allUsersRoute = `${host}/api/allUsers`;  // Se le tiene que pasar adiciona
 const loginRoute = `${host}/api/login`;
 const logoutRoute = `${host}/api/logout`;
 const registerRoute = `${host}/api/registrar`;
+const searchUser = `${host}/api/search/users`; // Se le tiene que pasar adicionalmente ":query"
 const getUserRoute = `${host}/api/user`; // Se le tiene que pasar adicionalmente "/:id"
 const editarPerfilRoute = `${host}/api/user/editar/perfil`; // Se le pasa adicionalmente "/:id"
 
@@ -38,6 +39,7 @@ export {
     allUsersRoute, 
     loginRoute,
     getUserRoute,
+    searchUser,
     logoutRoute,
     registerRoute,
     addMessageRoute, 

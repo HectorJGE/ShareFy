@@ -1,12 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import axios from 'axios'
 import logo from '../images/sharefy_logo.png';
-import { logoutRoute } from "./../utils/APIRoutes";
-import styled from "styled-components";
+import { logoutRoute, searchUser } from "./../utils/APIRoutes";
+import styled from "styled-components"
+import { AiOutlineHome, AiOutlineUser, AiOutlineMessage, AiOutlineLogout, AiOutlineSearch } from "react-icons/ai";
 
 function NavBar() {
     const idUser = JSON.parse(window.localStorage.getItem('loggedUser'))._id
-
+    const [searchResults, setSearchRestults]= useState([])
     const logout = () => {
         axios.get(`${logoutRoute}`)
             .then(res => {
@@ -17,6 +18,18 @@ function NavBar() {
         window.location.reload(false);
     }
     
+    const buscar = (e)=>{
+        if(!e.target.value){
+            setSearchRestults([])
+        }
+        axios.get(`${searchUser}/${e.target.value}`)
+            .then(res => {
+                console.log(res.data);
+                setSearchRestults(res.data)
+            })
+            .catch(e => console.log(e))
+    }
+
     return (
         <Container>
             <nav className="navbar navbar-expand-lg bg-dark">
@@ -26,19 +39,37 @@ function NavBar() {
                             <img src={logo} style={{ width: '30px', height: '30px' }} alt="" /> <span className="text-bg-dark"> ShareFy</span>
                         </a>
                     </div>
-                    <div className="link-success text-decoration-none">                            
-                        <a className="fs-5 text-decoration-none ms-3" href={`/`}>Home</a>
-                        <a className="fs-5 text-decoration-none ms-3" href={`/perfil/${idUser}`}>Perfil</a>
-                        <a className="fs-5 text-decoration-none ms-3" href={`/chat`}>Chat</a>
-                        <a className="fs-5 text-decoration-none ms-3" href="#" onClick={logout}>Salir</a>
+                    <div className="text-decoration-none fs-5 text-light d-flex align-items-center">                   
+                        
+                        <AiOutlineHome className="ms-3 me-1"/>
+                        <a className="nav-opt fs-5 text-decoration-none" href={`/`}> Home</a>
+                        <AiOutlineUser className="ms-3 me-1"/>
+                        <a className="nav-opt fs-5 text-decoration-none" href={`/perfil/${idUser}`}> Perfil</a>
+                        <AiOutlineMessage className="ms-3 me-1"/>
+                        <a className="nav-opt fs-5 text-decoration-none" href={`/chat`}>Chat</a>
+                        <AiOutlineLogout className="ms-3 me-1"/>
+                        <a className="nav-opt fs-5 text-decoration-none" href="." onClick={logout}>Salir</a>
                     </div>
+                        
+                        <AiOutlineSearch className=" mx-3 text-light fs-5"/>
+                        <div className="d-flex align-items-center ms-auto w-25">
+                            <form className="w-100 buscador" role="search">
+                                <input className="w-100 form-control " type="search" onChange={buscar} placeholder="Buscar usuario..." aria-label="Search"></input>
+                                <div className="w-25 bg-light position-absolute rounded">
+                                    {searchResults?
+                                        searchResults.slice(0,5).map((usuario,index)=>{
+                                            return (
+                                                <a className="text-start sr text-black text-decoration-none" href={`/perfil/${usuario._id}`} key={index}>
+                                                    <div  className=" p-2">{usuario.nombre} {usuario.apellido}</div>
+                                                </a>
+                                            )
+                                        })
+                                    :null
+                                    }
+                                </div>
+                            </form>
+                        </div>
                     
-                    <div className="buscador w-25 ms-auto">
-                        <form class="d-flex" role="search">
-                            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"></input>
-                            <button class="btn btn-outline-success" type="submit">Search</button>
-                        </form>
-                    </div>
                 </div>
             </nav>
         </Container>
@@ -46,7 +77,10 @@ function NavBar() {
 }
 
 const Container = styled.div`
-    a{
+    sr:hover{
+        opacity:0.5;
+    }
+    .nav-opt{
         color:white;!important
     }
     a:hover{
