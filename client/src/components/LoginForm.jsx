@@ -36,13 +36,13 @@ const LoginForm = () => {
                     <label htmlFor="floatingTextarea2" className="form-label">Email:</label>
                 </div>
 
-                <div className="form-floating mt-3">
+                <div className="form-floating mt-3 mb-3">
                     <input name="pass" type="password" className="form-control border-success-subtle" placeholder="Title..." onChange={e => { setPassword(e.target.value) }}></input>
                     <label htmlFor="floatingTextarea2" className="form-label">Contraseña:</label>
                 </div>
-                <div className="row justify-content-between mx-1 my-3 ">
-                    <a href='/registro' className="col-4 btn btn-success">Registrarse</a>
-                    <button className="col-4 btn btn-success">Loguearse</button>
+                <div className="row justify-content-between">
+                    <a href='/registro' className="col btn btn-success m-3 mt-0">Registrarse</a>
+                    <button className="col btn btn-success m-3 mt-0">Loguearse</button>
                 </div>
             </form>
         </div>

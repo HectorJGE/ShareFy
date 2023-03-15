@@ -44,7 +44,7 @@ const RegistroForm = () => {
                             : null : null}
                     </div>
                     <div className="form-floating mt-3">
-                        <input name="apellido" type="text" className={`form-control border-success-subtle ${errors ? errors['apellido'] ? 'is-invalid' : null : null}`} placeholder="Nombre..." onChange={e => { setApellido(e.target.value) }}></input>
+                        <input name="apellido" type="text" className={`form-control border-success-subtle ${errors ? errors['apellido'] ? 'is-invalid' : null : null}`} placeholder="Apellido..." onChange={e => { setApellido(e.target.value) }}></input>
                         <label htmlFor="floatingTextarea2" className="form-label">Apellido:</label>
                         {errors ? errors['apellido'] ?
                             <div id="validationServer03Feedback" className="invalid-feedback">
@@ -54,7 +54,7 @@ const RegistroForm = () => {
                     </div>
 
                     <div className="form-floating mt-3">
-                        <input name="email" type="text" className={`form-control border-success-subtle ${errors ? errors['email'] ? 'is-invalid' : null : null}`} onChange={e => { setEmail(e.target.value) }}></input>
+                        <input name="email" type="text" className={`form-control border-success-subtle ${errors ? errors['email'] ? 'is-invalid' : null : null}`} placeholder="Email..." onChange={e => { setEmail(e.target.value) }}></input>
                         <label htmlFor="floatingTextarea2" className="form-label">Email:</label>
                         {errors ? errors['email'] ?
                             <div id="validationServer03Feedback" className="invalid-feedback">
@@ -64,7 +64,7 @@ const RegistroForm = () => {
                     </div>
 
                     <div className="form-floating mt-3">
-                        <input name="pass" type="password" className={`form-control border-success-subtle ${errors ? errors['password'] ? 'is-invalid' : null : null}`} onChange={e => { setPassword(e.target.value) }}></input>
+                        <input name="pass" type="password" className={`form-control border-success-subtle ${errors ? errors['password'] ? 'is-invalid' : null : null}`} placeholder="Password..." onChange={e => { setPassword(e.target.value) }}></input>
                         <label htmlFor="floatingTextarea2" className="form-label">Contraseña:</label>
                         {errors ? errors['password'] ?
                             <div id="validationServer03Feedback" className="invalid-feedback">
@@ -73,8 +73,8 @@ const RegistroForm = () => {
                             : null : null}
                     </div>
 
-                    <div className="form-floating mt-3">
-                        <input name="cpass" type="password" className={`form-control border-success-subtle ${errors ? errors['cpass'] ? 'is-invalid' : null : null}`} onChange={e => { setCpass(e.target.value) }}></input>
+                    <div className="form-floating mt-3 mb-3">
+                        <input name="cpass" type="password" className={`form-control border-success-subtle ${errors ? errors['cpass'] ? 'is-invalid' : null : null}`} placeholder="Confirm..." onChange={e => { setCpass(e.target.value) }}></input>
                         <label htmlFor="floatingTextarea2" className="form-label">Confirmar Contraseña:</label>
                         {errors ? errors['cpass'] ?
                             <div id="validationServer03Feedback" className="invalid-feedback">
@@ -83,9 +83,9 @@ const RegistroForm = () => {
                             : null : null}
                     </div>
 
-                    <div className="row justify-content-between mx-1 my-4 ">
-                        <a className="col-4 btn btn-success " href={`/login`} >Volver</a>
-                        <button className="col-4 btn btn-success ">Registrarse</button>
+                    <div className="row justify-content-between">
+                        <a className="col-4 btn btn-success m-3 mt-0" href={`/login`} >Volver</a>
+                        <button className="col-4 btn btn-success m-3 mt-0">Registrarse</button>
                     </div>
                 </form>
             </div>
