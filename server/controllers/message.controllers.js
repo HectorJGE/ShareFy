@@ -41,7 +41,7 @@ const getNonFollowedSenders = (req, res) => {
             // Nos aseguramos de no tener repeticiones en la respuesta a la consulta
             const onlySenders = senders.map( (value) => value.sender.toString() )
             const uniqueSenders = onlySenders.filter((element, index) => {
-                return onlySenders.indexOf(element) === index;
+                return onlySenders.indexOf(element) === index && element!==to;
             })
             Users.find({ _id: { $in: uniqueSenders }})
                 .select([
