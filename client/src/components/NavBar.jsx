@@ -51,8 +51,8 @@ function NavBar() {
                         <a className="nav-opt fs-5 text-decoration-none" href="." onClick={logout}>Salir</a>
                     </div>
                         
-                        <AiOutlineSearch className=" mx-3 text-light fs-5"/>
                         <div className="d-flex align-items-center ms-auto w-25">
+                            <AiOutlineSearch className=" mx-3 text-light fs-5"/>
                             <form className="w-100 buscador" role="search">
                                 <input className="w-100 form-control " type="search" onChange={buscar} placeholder="Buscar usuario..." aria-label="Search"></input>
                                 <div className="w-25 bg-light position-absolute rounded">
