@@ -23,6 +23,7 @@ const addFollowRoute = `${host}/api/user/addFollow`;
 const unfollowRoute = `${host}/api/user/unfollow`;
 const isFollowing = `${host}/api/user/isFollowing`;
 const getFollowedRoute = `${host}/api/user/getFollowed`;
+const getFollowersRoute = `${host}/api/user/getFollowers`;
 
 // Para los mensajes
 const addMessageRoute = `${host}/api/message/add`;
@@ -40,6 +41,7 @@ export {
     unfollowRoute,
     isFollowing,
     getFollowedRoute,
+    getFollowersRoute,
     nuevaPublicacionRoute,
     borrarComentarioRoute,
     agregarComentarioRoute,
