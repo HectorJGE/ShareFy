@@ -7,6 +7,7 @@ import Container from "../utils/responsive.js";
 import {BsPencil} from "react-icons/bs"
 import { getUserRoute, publicacionUserRoute, addFollowRoute, unfollowRoute , isFollowing } from "../utils/APIRoutes.js";
 import ProfilePicture from "../components/ProfilePicture.jsx";
+import FollowsContainer from "../components/FollowsContainer.jsx";
 
 function PerfilUsuario() {
     const { id } = useParams()
@@ -38,13 +39,11 @@ function PerfilUsuario() {
         if(seguido){
             axios.put(`${unfollowRoute}`, { idFrom: loggedUser, idTo: id }, { withCredentials: true })
                 .then( (res) => {
-                    console.log(res);
                     setSeguido(false)
                 })
         }else{
             axios.put(`${addFollowRoute}`, { idFrom: loggedUser, idTo: id }, { withCredentials: true })
                 .then( (res) => {
-                    console.log(res);
                     setSeguido(true)
                 })
         }
@@ -78,11 +77,27 @@ function PerfilUsuario() {
                             {loggedUser === id?
                                 null
                             :
-                                seguido?
-                                <button type="button" class="btn btn-secondary btn-sm" onClick={handleFollow}>Seguido</button>
-                                :
-                                <button type="button" class="btn btn-primary btn-sm" onClick={handleFollow}>Seguir</button>
+                                <div className="mt-4">
+                                    {
+                                    seguido?
+                                    <button type="button" className="btn btn-secondary btn-sm" onClick={handleFollow}>Seguido</button>
+                                    :
+                                    <button type="button" className="btn btn-primary btn-sm" onClick={handleFollow}>Seguir</button>
+                                    }
+                                </div>
                             }
+                            <div className="btn-group mt-3" role="group" aria-label="Basic outlined example">
+                                <button type="button" className="btn btn-outline-primary btn-sm" data-bs-toggle="modal" data-bs-target="#followersDiv">Seguidores</button>
+                                <button type="button" className="btn btn-outline-primary btn-sm" data-bs-toggle="modal" data-bs-target="#followsDiv">Seguidos</button>
+                            </div>
+
+                            <div className="modal fade" id="followersDiv" tabIndex="-1" aria-labelledby="followers" aria-hidden="true">
+                                <FollowsContainer option="Seguidores"/>
+                            </div>
+
+                            <div className="modal fade" id="followsDiv" tabIndex="-1" aria-labelledby="follows" aria-hidden="true">
+                                <FollowsContainer option="Seguidos"/>
+                            </div>
                         </div>
                     </div>
                 </div>
