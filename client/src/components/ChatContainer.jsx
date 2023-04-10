@@ -119,7 +119,7 @@ const ChatContainer = ({ currentChat, socket }) => {
         axios.post(`${getMessageRoute}`, {
             from: data._id,
             to: currentChat._id,
-        })
+        }, { withCredentials: true })
             .then(res => {
                 setMessages(res.data)
             })
@@ -149,7 +149,7 @@ const ChatContainer = ({ currentChat, socket }) => {
             from: data._id,
             to: currentChat._id,
             message: msg,
-        });
+        }, { withCredentials: true });
 
         const msgs = [...messages];
         msgs.push({ fromSelf: true, message: msg });

@@ -12,7 +12,7 @@ const LoginForm = () => {
         e.preventDefault()
         axios.post(`${loginRoute}`, {
             email, password
-        }, { withCredentials: true, credentials: 'include' })
+        }, { withCredentials: true })
             .then(res => {
                 console.log(res);
                 window.localStorage.setItem(
