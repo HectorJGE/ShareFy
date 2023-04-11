@@ -34,6 +34,7 @@ module.exports = {
                 res.status(201).cookie('userToken', userToken, { 
                         secure: true, 
                         httpOnly: true,
+                        sameSite: 'none',
                         expires: new Date(Date.now() + 90000)}
                     ).json({ successMessage: 'Usuario registrado ', user: nuevoUsuario })
             } catch (error) {
@@ -56,6 +57,7 @@ module.exports = {
                             res.status(201).cookie('userToken', userToken, { 
                                     secure: true,
                                     httpOnly: true,
+                                    sameSite: 'none',
                                     expires: new Date(Date.now() + 9000000)}
                                 ).json({ successMessage: 'Usuario logueado ', user: usuario })
                         } catch (error) {

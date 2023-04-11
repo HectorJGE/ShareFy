@@ -9,6 +9,9 @@ import ConfirmacionBorrar from "./views/ConfirmacionBorrar";
 import EditarPublicacion from "./views/EditarPublicacion";
 import EditarPerfil from "./views/EditarPerfil";
 import Chat from "./views/Chat";
+import axios from 'axios';
+
+axios.defaults.withCredentials = true;
 
 function App() {
 	const user = window.localStorage.getItem('loggedUser')
