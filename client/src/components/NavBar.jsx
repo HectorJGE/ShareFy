@@ -9,10 +9,10 @@ function NavBar() {
     const idUser = JSON.parse(window.localStorage.getItem('loggedUser'))._id
     const [searchResults, setSearchRestults]= useState([])
     const logout = () => {
+        window.localStorage.removeItem('loggedUser')
         axios.get(`${logoutRoute}`, { withCredentials: true })
             .then(res => {
                 console.log(res.data);
-                window.localStorage.removeItem('loggedUser')
             })
             .catch(e => console.log(e))
         window.location.reload(false);
