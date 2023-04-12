@@ -4,7 +4,7 @@
     <img src="./readme/sharefy_logo.png" alt="Logo ShareFy" width="80" height="80">
   </a>
 
-  <h2 align="center">ShareFy - Documentación</h2>
+  <h3 align="center">ShareFy - Documentación</h3>
 </div>
 
 
@@ -13,10 +13,10 @@
 <!-- Cabecera del indice -->
 <div id="top"></div>  
 
-## Indice
+## Indice 📋
 <ul>
-    <li><a href="#instalación">Instalación</a></li>
-    <li><a href="#tecnologias-utilizadas">Tecnologias Utilizadas</a></li>
+    <li><a href="#instalación-💻">Instalación</a></li>
+    <li><a href="#tecnologias-utilizadas-🛠">Tecnologias Utilizadas</a></li>
     <li><a href="#contribuidores">Contribuidores</a></li>
     <li><a href="#contactos">Contactos</a></li>
 </ul>
@@ -80,8 +80,6 @@
 
 
 <p align="right">(<a href="#top">Volver al indice</a>)</p> 
-</br>  
-
 
 -----------------------------------------------------------------------
 <!-- Tecnologias utilizadas -->
@@ -102,8 +100,6 @@
 
 
 <p align="right">(<a href="#top">Volver al indice</a>)</p> 
-</br>   
-
 
 -----------------------------------------------------------------------
 
