@@ -16,7 +16,7 @@
 ## Indice 📋
 <ul>
     <li><a href="#instalación-">Instalación</a></li>
-    <li><a href="#tecnologias-utilizadas-🛠">Tecnologias Utilizadas</a></li>
+    <li><a href="#tecnologias-utilizadas-">Tecnologias Utilizadas</a></li>
     <li><a href="#contribuidores">Contribuidores</a></li>
     <li><a href="#contactos">Contactos</a></li>
 </ul>
