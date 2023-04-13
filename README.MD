@@ -109,17 +109,41 @@
   <tbody>
     <tr>
       <td align="center">
+        <img src="https://avatars.githubusercontent.com/u/85299373?v=3?s=100" width="100px;" alt="Moisés Alvarenga" style="border-radius: 50%;"/><br />
          <a href="https://github.com/moises35">
-            <img src="https://avatars.githubusercontent.com/u/85299373?v=3?s=100" width="100px;" alt="Moisés Alvarenga" style="border-radius: 50%;"/><br />
-            <p style="display: inline;">
                <b>Moisés Alvarenga:octocat:</b>
-            </p>
          </a></br>
          <sub>
             <a href="https://moises35.github.io/My_Portfolio/" target="_blank">Portfolio💼</a>
          </sub>
       </td>
-      
+      <td align="center">
+        <img src="https://avatars.githubusercontent.com/u/110752756?v=3?s=100" width="100px;" alt="Hector Gimenez" style="border-radius: 50%;"/><br />
+         <a href="https://github.com/HectorJGE">
+               <b>Hector Gimenez:octocat:</b>
+         </a></br>
+<!--          <sub>
+            <a href="https://github.com/HectorJGE" target="_blank">Portfolio💼</a>
+         </sub> -->
+      </td>
+      <td align="center">
+        <img src="https://avatars.githubusercontent.com/u/110790506?v=3?s=100" width="100px;" alt="Fabiola Ortiz" style="border-radius: 50%;"/><br />
+         <a href="https://github.com/FabiolaOrtizSC">
+               <b>Fabiola Ortiz:octocat:</b>
+         </a></br>
+<!--          <sub>
+            <a href="https://github.com/FabiolaOrtizSC" target="_blank">Portfolio💼</a>
+         </sub> -->
+      </td>
+      <td align="center">
+        <img src="https://avatars.githubusercontent.com/u/110683109?v=3?s=100" width="100px;" alt="Francisco Cabañas" style="border-radius: 50%;"/><br />
+         <a href="https://github.com/FranciscoCaba">
+               <b>Francisco Cabañas:octocat:</b>
+         </a></br>
+<!--          <sub>
+            <a href="https://github.com/FranciscoCaba" target="_blank">Portfolio💼</a>
+         </sub> -->
+      </td>
    </tbody>
 </table>
 
@@ -136,4 +160,3 @@
 [Netlify]: https://img.shields.io/badge/Netlify-00C7B7?style=for-the-badge&logo=netlify&logoColor=white
 [Git]: https://img.shields.io/badge/GIT-E44C30?style=for-the-badge&logo=git&logoColor=white
 [NPM]: https://img.shields.io/badge/NPM-2D3136.svg?style=for-the-badge&logo=npm&logoColor=white
-<script src="https://gist.github.com/rxaviers/7360908.js"></script>
