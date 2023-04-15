@@ -11,6 +11,9 @@ const Container = styled.div`
     img {
         height: 20rem;
     }
+    h1 {
+        text-align: center;
+    }
     span {
         color: #0eff46ba;
     }

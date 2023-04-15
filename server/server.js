@@ -6,6 +6,8 @@ const cookieParser = require('cookie-parser')
 require('dotenv').config()
 const app = express();
 const port = process.env.PORT || 8000;
+const origenes = process.env.CORS_ORIGIN.split(", ");
+console.log("Origenes: ", origenes);
 
 // Database
 require('./config/mongoose.config');
@@ -17,8 +19,8 @@ app.use(cookieParser())
 
 // CORS
 app.use(cors({
-    origin: process.env.CORS_ORIGIN,
-    credentials: true
+    origin: origenes,
+    credentials: true,
 }));
 
 // Rutas
@@ -32,7 +34,7 @@ const server = http.createServer(app);
 // Inicializamos socket.io
 const io = socketio(server, {
     cors: {
-        origin: process.env.CORS_ORIGIN,
+        origin: origenes,
         credentials: true
     }
 });

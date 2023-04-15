@@ -31,8 +31,12 @@ module.exports = {
             try {
                 const nuevoUsuario = await Usuario.create(req.body)
                 const userToken = jwt.sign({ _id: nuevoUsuario._id }, key)
-                res.status(201).cookie('userToken', userToken, { httpOnly: true, expires: new Date(Date.now() + 90000) })
-                    .json({ successMessage: 'Usuario registrado ', user: nuevoUsuario })
+                res.status(201).cookie('userToken', userToken, { 
+                        secure: true, 
+                        httpOnly: true,
+                        sameSite: 'none',
+                        expires: new Date(Date.now() + 90000)}
+                    ).json({ successMessage: 'Usuario registrado ', user: nuevoUsuario })
             } catch (error) {
                 res.status(401).json(error)
             }
@@ -48,8 +52,17 @@ module.exports = {
                 bcrypt.compare(req.body.password, usuario.password, (error, data) => {
                     if (data) {
                         const userToken = jwt.sign({ _id: usuario._id }, key)
-                        res.status(201).cookie('userToken', userToken, { httpOnly: true, expires: new Date(Date.now() + 9000000) })
-                            .json({ successMessage: 'Usuario logueado ', user: usuario })
+                        console.log("El user token es " + userToken)
+                        try {
+                            res.status(201).cookie('userToken', userToken, { 
+                                    secure: true,
+                                    httpOnly: true,
+                                    sameSite: 'none',
+                                    expires: new Date(Date.now() + 9000000)}
+                                ).json({ successMessage: 'Usuario logueado ', user: usuario })
+                        } catch (error) {
+                            console.log(error)
+                        }
                     } else {
                         return res.status(400).json({ error: "Email o password no válido" })
                     }
